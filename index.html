@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GenerativeAI.net | NTRO Content Transformation Platform</title>
+  <title>AI-Secumate | NTRO Content Transformation Platform</title>
 
   <!-- In-Browser CDNs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -258,7 +258,7 @@
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
       <div class="space-y-0.5">
         <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
-          <span>🔑 Google Gemini 1.5 Flash API Key</span>
+          <span>🔑 Google Gemini 3.5 Flash Lite API Key</span>
           <span id="badge-key-state"
             class="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full font-mono font-bold">Active
             in Protected Memory</span>
@@ -926,7 +926,7 @@
                 <span class="text-slate-300">|</span>
                 <span class="text-slate-600 font-semibold" id="meta-words">0 words</span>
                 <span class="text-slate-300">|</span>
-                <span class="text-[#047857] font-bold" id="meta-model-label">Gemini 1.5 Flash (Live)</span>
+                <span class="text-[#047857] font-bold" id="meta-model-label">Gemini 3.5 Flash Lite (Live)</span>
               </div>
 
               <div class="flex items-center space-x-2">
@@ -1536,7 +1536,7 @@
   <footer class="border-t border-slate-200 bg-white py-6 text-xs text-slate-600 mt-auto">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
       <div class="flex items-center space-x-2">
-        <span>© 2025/2026 GenerativeAI.net</span>
+        <span>© 2025/2026 AI-Secumate</span>
         <span>•</span>
         <span>NTRO Content Transformation Platform</span>
         <span>•</span>
@@ -1974,7 +1974,7 @@ ENGINE: OpenAI Whisper Large-v3 Speech-to-Text Pipeline (Confidence: 99.2%)
 
     // Live Gemini API Call
     async function callLiveGemini(outputType, sourceText, params) {
-      if (!state.geminiApiKey) return null;
+      // if (!state.geminiApiKey) return null;
 
       let formatDirective = "";
       if (outputType === 'executive') {
@@ -2012,34 +2012,26 @@ SOURCE CONTENT:
 ${sourceText}`;
 
       try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${state.geminiApiKey}`;
-        const requestParts = [{ text: systemPrompt }];
-        if (state.uploadedImageBase64 && state.currentIngestMode === 'image') {
-          requestParts.push({
-            inline_data: {
-              mime_type: state.uploadedImageMime || 'image/png',
-              data: state.uploadedImageBase64
-            }
-          });
-        }
-
-        const response = await fetch(url, {
+        // Calls your secure Vercel backend proxy
+        const response = await fetch('/api/transform', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ contents: [{ parts: requestParts }] })
+          body: JSON.stringify({ prompt: systemPrompt })
         });
 
         if (response.ok) {
           const data = await response.json();
-          if (data.candidates && data.candidates[0].content.parts[0].text) {
-            return data.candidates[0].content.parts[0].text;
+          if (data.text) {
+            return data.text;
           }
+        } else {
+          const err = await response.json();
+          console.warn("Serverless API error:", err);
         }
       } catch (err) {
-        console.warn("Gemini call failed:", err);
+        console.warn("API call failed:", err);
       }
       return null;
-    }
 
     // Dynamic Local Synthesis Engine (Zero-Key Offline Fallback)
     function synthesizeCustomDeliverableLocally(outputType, sourceText, params) {

@@ -513,7 +513,7 @@
           <span id="studio-role-display"
             class="font-mono font-bold text-xs text-[#064e3b] bg-emerald-100/70 border border-emerald-300 px-2.5 py-1 rounded-lg">OP-101
             (Operator)</span>
-          <button onclick="switchMainView('login')" class="text-xs text-[#047857] hover:underline font-bold">
+          <button onclick="openRoleModal()" class="text-xs text-[#047857] hover:underline font-bold">
             Switch Role
           </button>
         </div>
@@ -979,118 +979,53 @@
   <!-- ======================================================== -->
   <!-- 4. LOGIN PAGE (DEDICATED RBAC AUTHENTICATION VIEW)       -->
   <!-- ======================================================== -->
-  <div id="view-login"
-    class="hidden flex-1 flex flex-col justify-center items-center py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
-    <div class="max-w-2xl w-full space-y-8 bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-slate-200">
+  <!-- ======================================================== -->
+  <!-- 4. LOGIN PAGE (FIREBASE GOOGLE + EMAIL AUTHENTICATION)   -->
+  <!-- ======================================================== -->
+<!-- 4. LOGIN PAGE (AUTHENTIC GOOGLE & EMAIL SSO) -->
+  <div id="view-login" class="hidden flex-1 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+    <div class="max-w-md w-full space-y-6 bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-200">
+      
+      <div class="text-center space-y-2">
+        <h2 class="text-2xl font-extrabold text-[#052e16] font-display">Portal Sign-On (SSO)</h2>
+        <p class="text-xs text-slate-600">Sign in via Google or Official Email.</p>
+      </div>
 
-      <!-- Brand & Title -->
-      <div class="text-center space-y-3">
-        <div class="h-12 w-12 mx-auto flex items-center justify-center">
-          <svg class="h-10 w-10 text-[#047857]" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="10" y="2" width="4" height="4" rx="1" />
-            <rect x="6" y="6" width="4" height="4" rx="1" />
-            <rect x="10" y="6" width="4" height="4" rx="1" />
-            <rect x="14" y="6" width="4" height="4" rx="1" />
-            <rect x="2" y="10" width="4" height="4" rx="1" />
-            <rect x="6" y="10" width="4" height="4" rx="1" />
-            <rect x="10" y="10" width="4" height="4" rx="1" />
-            <rect x="14" y="10" width="4" height="4" rx="1" />
-            <rect x="18" y="10" width="4" height="4" rx="1" />
-            <rect x="6" y="14" width="4" height="4" rx="1" />
-            <rect x="10" y="14" width="4" height="4" rx="1" />
-            <rect x="14" y="14" width="4" height="4" rx="1" />
-            <rect x="10" y="18" width="4" height="4" rx="1" />
+      <!-- Google Sign-In -->
+      <div>
+        <button onclick="window.firebaseAuth.signInWithGoogle()" class="w-full py-3 px-4 border border-slate-300 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm shadow-sm transition flex items-center justify-center gap-3">
+          <svg class="w-5 h-5" viewBox="0 0 24 24">
+            <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z"/>
+            <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
+            <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.8 0 12s.7 3.3 1.9 5.7l3.7-2.9z"/>
+            <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16C3.7 19.7 7.5 23 12 23z"/>
           </svg>
-        </div>
-        <h2 class="text-3xl font-extrabold text-[#052e16] font-display">
-          Portal Single Sign-On (SSO)
-        </h2>
-        <p class="text-sm text-slate-600 max-w-md mx-auto">
-          Role-Based Access Control (RBAC) authentication. Select your official clearance below to enter the
-          transformation studio.
-        </p>
+          <span>Continue with Google</span>
+        </button>
       </div>
 
-      <!-- 3 Clear Role Cards with 1-Click Login -->
-      <div class="space-y-3.5 pt-2">
-        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Select Authorized Role to Enter:</div>
-
-        <!-- Role 1: Operator -->
-        <div onclick="loginAsRole('operator')"
-          class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#e0f2fe]/40 hover:bg-[#e0f2fe]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
-          <div class="space-y-1">
-            <div class="flex items-center space-x-2">
-              <span class="text-base font-extrabold text-slate-900 group-hover:text-[#064e3b]">🛡️ Operator (Admin /
-                Creator)</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-sky-200 text-sky-900 font-mono text-xs font-bold">ID:
-                OP-101</span>
-            </div>
-            <p class="text-xs text-slate-600">Full operational authority to upload multimodal source files, customize
-              parameters, execute transformations, and export all 7 deliverables.</p>
-            <div class="text-[11px] text-sky-800 font-bold font-mono">Clearance: Ingest • Transform • Export (.pptx,
-              Markdown, JSON)</div>
-          </div>
-          <button
-            class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
-            Sign In →
-          </button>
-        </div>
-
-        <!-- Role 2: Commander -->
-        <div onclick="loginAsRole('commander')"
-          class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#f3e8ff]/40 hover:bg-[#f3e8ff]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
-          <div class="space-y-1">
-            <div class="flex items-center space-x-2">
-              <span class="text-base font-extrabold text-slate-900 group-hover:text-purple-900">🎖️ Cyber Commander
-                (Approver)</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-purple-200 text-purple-900 font-mono text-xs font-bold">ID:
-                CMD-201</span>
-            </div>
-            <p class="text-xs text-slate-600">Executive authorization. Signs newly minted blockchain ledger blocks with
-              official authority as <code>NTRO-NODE-ALPHA</code>.</p>
-            <div class="text-[11px] text-purple-800 font-bold font-mono">Clearance: Review Briefings • Executive
-              Approver • Blockchain Signer</div>
-          </div>
-          <button
-            class="px-4 py-2 bg-purple-800 hover:bg-purple-900 text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
-            Sign In →
-          </button>
-        </div>
-
-        <!-- Role 3: Auditor -->
-        <div onclick="loginAsRole('auditor')"
-          class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#ffedd5]/40 hover:bg-[#ffedd5]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
-          <div class="space-y-1">
-            <div class="flex items-center space-x-2">
-              <span class="text-base font-extrabold text-slate-900 group-hover:text-amber-900">⚖️ Compliance Auditor
-                (Inspector)</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-orange-200 text-orange-900 font-mono text-xs font-bold">ID:
-                AUDIT-301</span>
-            </div>
-            <p class="text-xs text-slate-600"><strong>Read-Only Inspection Mode:</strong> Can inspect the permissioned
-              ledger, verify cryptographic hashes, and test the Tamper Lab. Content generation is locked.</p>
-            <div class="text-[11px] text-orange-800 font-bold font-mono">Clearance: Read-Only Audit • Verify Merkle Root
-              • Test Tamper Lab</div>
-          </div>
-          <button
-            class="px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
-            Sign In →
-          </button>
-        </div>
+      <div class="relative flex items-center justify-center">
+        <div class="border-t border-slate-200 w-full"></div>
+        <span class="bg-white px-3 text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">or with email</span>
       </div>
 
-      <!-- Footer Help -->
-      <div class="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
-        <span>Smart India Hackathon 2026 • PS 26154</span>
-        <button onclick="loginAsRole('operator')"
-          class="font-bold text-[#047857] hover:underline flex items-center gap-1">
-          <span>Quick Launch (Demo Operator OP-101) →</span>
+      <!-- Email Sign-In -->
+      <div class="space-y-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
+          <input type="email" id="input-signin-email" placeholder="name@domain.com" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+          <input type="password" id="input-signin-password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+        </div>
+        <button onclick="submitFirebaseSignIn()" class="w-full py-3 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-xs rounded-xl shadow-md transition uppercase tracking-wider">
+          Sign In to Portal
         </button>
       </div>
 
     </div>
   </div>
-
   <!-- ======================================================== -->
   <!-- 5. BLOCKCHAIN & TAMPER LAB VIEW                          -->
   <!-- ======================================================== -->
@@ -1629,6 +1564,69 @@
     }
 
     // Authentication & RBAC Switcher
+    // Tab toggle between Sign In and Sign Up
+    function switchAuthTab(tab) {
+      const btnIn = document.getElementById('tab-auth-signin');
+      const btnUp = document.getElementById('tab-auth-signup');
+      const formIn = document.getElementById('form-auth-signin');
+      const formUp = document.getElementById('form-auth-signup');
+
+      if (tab === 'signin') {
+        btnIn.className = "w-1/2 py-2 border-b-2 border-[#047857] text-[#047857] transition text-center";
+        btnUp.className = "w-1/2 py-2 text-slate-400 hover:text-slate-700 transition text-center";
+        formIn.classList.remove('hidden');
+        formUp.classList.add('hidden');
+      } else {
+        btnUp.className = "w-1/2 py-2 border-b-2 border-[#047857] text-[#047857] transition text-center";
+        btnIn.className = "w-1/2 py-2 text-slate-400 hover:text-slate-700 transition text-center";
+        formUp.classList.remove('hidden');
+        formIn.classList.add('hidden');
+      }
+    }
+
+    // Called when clicking Email Sign In
+    function submitFirebaseSignIn() {
+      const email = document.getElementById('input-signin-email').value.trim();
+      const pass = document.getElementById('input-signin-password').value;
+      if (!email || !pass) return alert("Please enter both email and password.");
+      window.firebaseAuth.signInWithEmail(email, pass);
+    }
+
+    // Called when clicking Email Sign Up
+    function submitFirebaseSignUp() {
+
+      const name = document.getElementById('input-signup-name').value.trim();
+      const email = document.getElementById('input-signup-email').value.trim();
+      const pass = document.getElementById('input-signup-password').value;
+      const role = document.getElementById('input-signup-role').value;
+      const token = document.getElementById('input-clearance-token').value; //changed
+      // Check Privilege Escalation Gate
+      if (!validateRoleToken(role, token)) {
+        alert("⚠️ Privilege Escalation Blocked: Invalid Security Token for " + role.toUpperCase() + "!\nUser restricted to Operator baseline.");
+        return; //changed
+      }
+      // If token is valid, proceed with sign-up
+      window.firebaseAuth.signUpWithEmail(email, pass, role); //changed
+
+      if (!email || !pass || pass.length < 6) return alert("Please enter a valid email and password of at least 6 characters.");
+      window.firebaseAuth.signUpWithEmail(email, pass, role);
+    }
+
+    // Connects Firebase Auth back to your dashboard (Fixes the missing function)
+    function handlePostLogin(email, displayName, role) {
+      state.isLoggedIn = true;
+      state.currentRole = role || 'operator';
+      state.currentUser = `${displayName || email.split('@')[0]} (${state.currentRole.toUpperCase()})`;
+
+      const roleBadge = document.getElementById('studio-role-display');
+      if (roleBadge) {
+        roleBadge.innerText = `${state.currentRole.toUpperCase()}: ${email}`;
+      }
+
+      renderAuthHeaderButton();
+      applyRolePermissions();
+      switchMainView('services');
+    }
     function loginAsRole(role) {
       state.isLoggedIn = true;
       state.currentRole = role;
@@ -2032,7 +2030,7 @@ ${sourceText}`;
         console.warn("API call failed:", err);
       }
       return null;
-      } 
+    }
     // Dynamic Local Synthesis Engine (Zero-Key Offline Fallback)
     function synthesizeCustomDeliverableLocally(outputType, sourceText, params) {
       const lines = sourceText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
@@ -2883,6 +2881,78 @@ ${coreClaims}
       updateVideoDisplay();
       renderBlockchainTable();
     };
+    // ========================================================
+    // CLEARANCE ELEVATION MODAL CONTROLS
+    // ========================================================
+    function openRoleModal() {
+      const modal = document.getElementById('modal-role-switch');
+      if (!modal) return;
+      document.getElementById('modal-user-identity').innerText = state.currentUser || "Piyush Kumar";
+      document.getElementById('modal-current-role-badge').innerText = (state.currentRole || 'operator').toUpperCase();
+      
+      const radios = document.getElementsByName('modal-target-role');
+      for (let r of radios) {
+        r.checked = (r.value === state.currentRole);
+      }
+      onModalRoleChange();
+      modal.classList.remove('hidden');
+    }
+
+    function closeRoleModal() {
+      const modal = document.getElementById('modal-role-switch');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function onModalRoleChange() {
+      const selected = document.querySelector('input[name="modal-target-role"]:checked')?.value || 'operator';
+      const tokenBox = document.getElementById('modal-token-box');
+      const tokenInput = document.getElementById('input-modal-token');
+      tokenInput.value = '';
+      
+      if (selected === 'operator') {
+        tokenBox.classList.add('hidden');
+      } else {
+        tokenBox.classList.remove('hidden');
+        tokenInput.focus();
+      }
+    }
+
+    function confirmClearanceElevation() {
+      const selectedRole = document.querySelector('input[name="modal-target-role"]:checked')?.value || 'operator';
+      const token = document.getElementById('input-modal-token')?.value?.trim() || '';
+
+      // Check Tokens
+      if (selectedRole === 'commander' && token !== 'CMD-2026') {
+        alert("⚠️ Privilege Escalation Blocked: Invalid Security Token for CYBER COMMANDER!\n(PIN: CMD-2026)");
+        return;
+      }
+      if (selectedRole === 'auditor' && token !== 'AUDIT-2026') {
+        alert("⚠️ Privilege Escalation Blocked: Invalid Security Token for COMPLIANCE AUDITOR!\n(PIN: AUDIT-2026)");
+        return;
+      }
+
+      // Elevate State
+      state.currentRole = selectedRole;
+      const userName = (state.currentUser && state.currentUser.includes('(')) ? state.currentUser.split('(')[0].trim() : 'Piyush Kumar';
+      state.currentUser = `${userName} (${selectedRole.toUpperCase()})`;
+
+      // Update Header & Studio Badges
+      const studioRoleBadge = document.getElementById('studio-role-display');
+      if (studioRoleBadge) {
+        const badges = {
+          operator: 'OP-101 (Operator)',
+          commander: 'CMD-201 (Commander)',
+          auditor: 'AUDIT-301 (Auditor)'
+        };
+        studioRoleBadge.innerText = badges[selectedRole] || `${selectedRole.toUpperCase()}`;
+      }
+
+      renderAuthHeaderButton();
+      applyRolePermissions();
+      closeRoleModal();
+
+      alert(`✅ Clearance Verified: Active as ${selectedRole.toUpperCase()}!`);
+    }
   </script>
   <!-- Firebase Authentication Module -->
   <script type="module">
@@ -2968,7 +3038,128 @@ ${coreClaims}
         handlePostLogin(user.email, user.displayName || user.email.split('@')[0], storedRole);
       }
     });
+
+    // 1. Show token box only when Commander or Auditor is selected
+    function toggleClearanceTokenField() {
+      const role = document.getElementById('input-signup-role').value;
+      const tokenBox = document.getElementById('field-clearance-token');
+      // Only show if role is NOT operator
+      tokenBox.classList.toggle('hidden', role === 'operator');
+    }
+
+    // 2. Validate the token on Sign-Up
+    function validateRoleToken(role, token) {
+      if (role === 'operator') return true; // Free access
+
+      if (role === 'commander' && token.trim() === 'CMD-2026') return true;
+      if (role === 'auditor' && token.trim() === 'AUDIT-2026') return true;
+
+      return false; // Wrong token!
+    }
   </script>
+  <!-- ======================================================== -->
+  <!-- RBAC CLEARANCE ELEVATION MODAL (DEFENSE TOKEN GATE)      -->
+  <!-- ======================================================== -->
+  <div id="modal-role-switch"
+    class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+    <div class="bg-white max-w-md w-full rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 space-y-5">
+
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="p-2 bg-emerald-100 text-[#047857] rounded-xl font-bold">🛡️</div>
+          <div>
+            <h3 class="text-base font-extrabold text-slate-900 font-display">Security Clearance Elevation</h3>
+            <p class="text-xs text-slate-500">Role-Based Access Control (RBAC) Gate</p>
+          </div>
+        </div>
+        <button onclick="closeRoleModal()" class="text-slate-400 hover:text-slate-700 text-lg font-bold p-1">✕</button>
+      </div>
+
+      <!-- Authenticated Identity Info -->
+      <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-200 text-xs space-y-1">
+        <div class="text-slate-500">Active Identity: <b class="text-slate-900" id="modal-user-identity">Piyush Kumar</b>
+        </div>
+        <div class="text-slate-500">Current Level: <span id="modal-current-role-badge"
+            class="font-mono font-bold text-[#047857] bg-emerald-100 px-2 py-0.5 rounded">OPERATOR</span></div>
+      </div>
+
+      <!-- Select Target Role -->
+      <div class="space-y-2">
+        <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Select Clearance to
+          Activate:</label>
+
+        <!-- Role 1: Operator -->
+        <label
+          class="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 cursor-pointer transition">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="modal-target-role" value="operator" onchange="onModalRoleChange()" checked
+              class="text-[#047857] focus:ring-emerald-500">
+            <div>
+              <div class="text-xs font-bold text-slate-900">🛡️ Operator (Level 1)</div>
+              <div class="text-[11px] text-slate-500">Content creator. Ingest, transform, and export all 7 deliverables.
+              </div>
+            </div>
+          </div>
+          <span
+            class="text-[10px] font-mono text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full font-bold">Standard</span>
+        </label>
+
+        <!-- Role 2: Commander -->
+        <label
+          class="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 cursor-pointer transition">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="modal-target-role" value="commander" onchange="onModalRoleChange()"
+              class="text-[#047857] focus:ring-emerald-500">
+            <div>
+              <div class="text-xs font-bold text-purple-900">🎖️ Cyber Commander (Level 3)</div>
+              <div class="text-[11px] text-slate-500">Executive authority. Signs ledger blocks as NTRO-NODE-ALPHA.</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-mono text-purple-800 bg-purple-100 px-2 py-0.5 rounded-full font-bold">Token
+            Required</span>
+        </label>
+
+        <!-- Role 3: Auditor -->
+        <label
+          class="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 cursor-pointer transition">
+          <div class="flex items-center gap-3">
+            <input type="radio" name="modal-target-role" value="auditor" onchange="onModalRoleChange()"
+              class="text-[#047857] focus:ring-emerald-500">
+            <div>
+              <div class="text-xs font-bold text-amber-900">⚖️ Compliance Auditor (Level 2)</div>
+              <div class="text-[11px] text-slate-500">Read-Only inspection mode. Content transformation is locked.</div>
+            </div>
+          </div>
+          <span class="text-[10px] font-mono text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full font-bold">Token
+            Required</span>
+        </label>
+      </div>
+
+      <!-- Token Input (Appears ONLY for Commander or Auditor) -->
+      <div id="modal-token-box" class="hidden bg-amber-50 p-4 rounded-2xl border border-amber-300 space-y-1.5">
+        <label class="block text-xs font-bold text-amber-900 flex items-center justify-between">
+          <span>🔐 Enter Defense Clearance Token / PIN:</span>
+          <span class="text-[10px] font-mono text-amber-700 font-bold">Demo: CMD-2026 or AUDIT-2026</span>
+        </label>
+        <input type="password" id="input-modal-token" placeholder="Enter Token PIN"
+          class="w-full bg-white border border-amber-300 rounded-xl px-3 py-2 text-xs font-mono text-slate-900 outline-none focus:ring-2 focus:ring-amber-500">
+      </div>
+
+      <!-- Actions -->
+      <div class="flex gap-2 pt-2">
+        <button onclick="closeRoleModal()"
+          class="w-1/3 py-2.5 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+          Cancel
+        </button>
+        <button onclick="confirmClearanceElevation()"
+          class="w-2/3 py-2.5 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-xs rounded-xl shadow-md transition uppercase tracking-wider">
+          Verify Token & Switch
+        </button>
+      </div>
+
+    </div>
+  </div>
 
 </body>
 

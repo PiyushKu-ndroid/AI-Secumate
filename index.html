@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GenerativeAI.net | NTRO Content Transformation Platform</title>
-  
+
   <!-- In-Browser CDNs -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
@@ -12,11 +13,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
 
   <style>
     body {
@@ -24,35 +27,114 @@
       background-color: #f8fafc;
       color: #0f172a;
     }
-    .font-mono { font-family: 'JetBrains Mono', monospace; }
-    
+
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+
     /* GenerativeAI.net Official Palette */
-    .bg-forest-green { background-color: #064e3b; }
-    .bg-hero-mint { background-color: #e6f4ea; }
-    .text-spring-green { color: #10b981; }
-    .btn-green { background-color: #047857; color: white; }
-    .btn-green:hover { background-color: #065f46; }
+    .bg-forest-green {
+      background-color: #064e3b;
+    }
+
+    .bg-hero-mint {
+      background-color: #e6f4ea;
+    }
+
+    .text-spring-green {
+      color: #10b981;
+    }
+
+    .btn-green {
+      background-color: #047857;
+      color: white;
+    }
+
+    .btn-green:hover {
+      background-color: #065f46;
+    }
 
     /* Interactive Card Hover Effects (Lifting + Soft Glow) */
     .hover-card {
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+
     .hover-card:hover {
       transform: translateY(-6px);
       box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     }
 
     /* Output Deliverable Prose Rendering */
-    .prose-genai h1 { font-size: 1.5rem; font-weight: 800; color: #064e3b; margin-top: 1.25rem; margin-bottom: 0.6rem; border-bottom: 2px solid #059669; padding-bottom: 0.4rem; }
-    .prose-genai h2 { font-size: 1.25rem; font-weight: 700; color: #047857; margin-top: 1.1rem; margin-bottom: 0.5rem; }
-    .prose-genai h3 { font-size: 1.1rem; font-weight: 700; color: #065f46; margin-top: 0.9rem; margin-bottom: 0.4rem; }
-    .prose-genai p { margin-bottom: 0.85rem; line-height: 1.7; color: #334155; }
-    .prose-genai ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 0.85rem; color: #334155; }
-    .prose-genai ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 0.85rem; color: #334155; }
-    .prose-genai li { margin-bottom: 0.35rem; line-height: 1.6; }
-    .prose-genai strong { font-weight: 700; color: #0f172a; }
-    .prose-genai hr { border-color: #e2e8f0; margin: 1.25rem 0; }
-    .prose-genai code { font-family: 'JetBrains Mono', monospace; background: #ecfdf5; color: #047857; padding: 2px 6px; border-radius: 4px; font-size: 0.88em; font-weight: 600; }
+    .prose-genai h1 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #064e3b;
+      margin-top: 1.25rem;
+      margin-bottom: 0.6rem;
+      border-bottom: 2px solid #059669;
+      padding-bottom: 0.4rem;
+    }
+
+    .prose-genai h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #047857;
+      margin-top: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .prose-genai h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #065f46;
+      margin-top: 0.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .prose-genai p {
+      margin-bottom: 0.85rem;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .prose-genai ul {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-bottom: 0.85rem;
+      color: #334155;
+    }
+
+    .prose-genai ol {
+      list-style-type: decimal;
+      padding-left: 1.5rem;
+      margin-bottom: 0.85rem;
+      color: #334155;
+    }
+
+    .prose-genai li {
+      margin-bottom: 0.35rem;
+      line-height: 1.6;
+    }
+
+    .prose-genai strong {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .prose-genai hr {
+      border-color: #e2e8f0;
+      margin: 1.25rem 0;
+    }
+
+    .prose-genai code {
+      font-family: 'JetBrains Mono', monospace;
+      background: #ecfdf5;
+      color: #047857;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+      font-weight: 600;
+    }
 
     /* Scene Card for Video Package */
     .scene-card {
@@ -64,6 +146,7 @@
       margin-bottom: 14px;
       box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
     }
+
     .narration-box {
       background: #f0fdf4;
       border-left: 3px solid #10b981;
@@ -74,6 +157,7 @@
       color: #065f46;
       font-weight: 500;
     }
+
     .visual-box {
       background: #f0fdfa;
       border-left: 3px solid #14b8a6;
@@ -85,6 +169,7 @@
     }
   </style>
 </head>
+
 <body class="min-h-screen flex flex-col antialiased">
 
   <!-- ======================================================== -->
@@ -93,57 +178,70 @@
   <header class="bg-[#064e3b] text-white sticky top-0 z-50 shadow-md">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-20">
-        
+
         <!-- Left: Pixel Matrix Logo & Title -->
         <div onclick="switchMainView('home')" class="flex items-center space-x-3 cursor-pointer group select-none">
           <!-- Green Dot-Matrix Pixel Cluster Icon -->
           <div class="h-10 w-10 flex items-center justify-center">
-            <svg class="h-8 w-8 text-[#34d399] transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
-              <rect x="10" y="2" width="4" height="4" rx="1"/>
-              <rect x="6" y="6" width="4" height="4" rx="1"/>
-              <rect x="10" y="6" width="4" height="4" rx="1"/>
-              <rect x="14" y="6" width="4" height="4" rx="1"/>
-              <rect x="2" y="10" width="4" height="4" rx="1"/>
-              <rect x="6" y="10" width="4" height="4" rx="1"/>
-              <rect x="10" y="10" width="4" height="4" rx="1"/>
-              <rect x="14" y="10" width="4" height="4" rx="1"/>
-              <rect x="18" y="10" width="4" height="4" rx="1"/>
-              <rect x="6" y="14" width="4" height="4" rx="1"/>
-              <rect x="10" y="14" width="4" height="4" rx="1"/>
-              <rect x="14" y="14" width="4" height="4" rx="1"/>
-              <rect x="10" y="18" width="4" height="4" rx="1"/>
+            <svg class="h-8 w-8 text-[#34d399] transition-transform group-hover:scale-110" viewBox="0 0 24 24"
+              fill="currentColor">
+              <rect x="10" y="2" width="4" height="4" rx="1" />
+              <rect x="6" y="6" width="4" height="4" rx="1" />
+              <rect x="10" y="6" width="4" height="4" rx="1" />
+              <rect x="14" y="6" width="4" height="4" rx="1" />
+              <rect x="2" y="10" width="4" height="4" rx="1" />
+              <rect x="6" y="10" width="4" height="4" rx="1" />
+              <rect x="10" y="10" width="4" height="4" rx="1" />
+              <rect x="14" y="10" width="4" height="4" rx="1" />
+              <rect x="18" y="10" width="4" height="4" rx="1" />
+              <rect x="6" y="14" width="4" height="4" rx="1" />
+              <rect x="10" y="14" width="4" height="4" rx="1" />
+              <rect x="14" y="14" width="4" height="4" rx="1" />
+              <rect x="10" y="18" width="4" height="4" rx="1" />
             </svg>
           </div>
           <div>
             <div class="flex items-center space-x-2">
-              <span class="font-extrabold text-2xl tracking-tight text-white font-display">Generative<span class="text-[#34d399]">AI.net</span></span>
-              <span class="hidden md:inline-block px-2 py-0.5 text-xs font-bold bg-[#047857] text-white rounded-full">NTRO Core</span>
+              <span class="font-extrabold text-2xl tracking-tight text-white font-display">Generative<span
+                  class="text-[#34d399]">AI.net</span></span>
+              <span
+                class="hidden md:inline-block px-2 py-0.5 text-xs font-bold bg-[#047857] text-white rounded-full">NTRO
+                Core</span>
             </div>
-            <p class="text-[11px] text-emerald-200 font-medium hidden sm:block">Automated Multimodal Content Transformation • PS ID: 26154</p>
+            <p class="text-[11px] text-emerald-200 font-medium hidden sm:block">Automated Multimodal Content
+              Transformation • PS ID: 26154</p>
           </div>
         </div>
 
         <!-- Center: Primary Navigation Links (Matching Screenshot) -->
         <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-          <button onclick="switchMainView('home')" id="nav-home" class="nav-item text-white hover:text-[#34d399] transition font-semibold">Home</button>
-          <button onclick="switchMainView('services')" id="nav-services" class="nav-item text-slate-200 hover:text-white transition">Services</button>
-          <button onclick="switchMainView('blockchain')" id="nav-blockchain" class="nav-item text-slate-200 hover:text-white transition">Blockchain</button>
-          <button onclick="switchMainView('architecture')" id="nav-architecture" class="nav-item text-slate-200 hover:text-white transition">Architecture</button>
-          <button onclick="switchMainView('demo')" id="nav-demo" class="nav-item text-slate-200 hover:text-white transition">Demo Video</button>
-          <button onclick="switchMainView('presentation')" id="nav-presentation" class="nav-item text-slate-200 hover:text-white transition">Presentation</button>
+          <button onclick="switchMainView('home')" id="nav-home"
+            class="nav-item text-white hover:text-[#34d399] transition font-semibold">Home</button>
+          <button onclick="switchMainView('services')" id="nav-services"
+            class="nav-item text-slate-200 hover:text-white transition">Services</button>
+          <button onclick="switchMainView('blockchain')" id="nav-blockchain"
+            class="nav-item text-slate-200 hover:text-white transition">Blockchain</button>
+          <button onclick="switchMainView('architecture')" id="nav-architecture"
+            class="nav-item text-slate-200 hover:text-white transition">Architecture</button>
+          <button onclick="switchMainView('demo')" id="nav-demo"
+            class="nav-item text-slate-200 hover:text-white transition">Demo Video</button>
+          <button onclick="switchMainView('presentation')" id="nav-presentation"
+            class="nav-item text-slate-200 hover:text-white transition">Presentation</button>
         </nav>
 
         <!-- Right Side: API Key & Login / User Status -->
         <div class="flex items-center space-x-3">
           <!-- API Key Trigger -->
-          <button onclick="toggleApiKeyModal()" id="btn-api-badge" class="hidden sm:flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold rounded-lg bg-[#047857] hover:bg-[#065f46] text-white border border-emerald-600 transition shadow-sm">
-            <span class="h-2 w-2 rounded-full bg-emerald-300" id="api-status-dot"></span>
-            <span id="lbl-api-text">API: Gemini Flash</span>
+          <button onclick="toggleApiKeyModal()" id="btn-api-badge"
+            class="flex items-center space-x-1 sm:space-x-1.5 px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-xs font-bold rounded-lg bg-[#047857] hover:bg-[#065f46] text-white border border-emerald-600 transition shadow-sm"></button>
+          <span class="h-2 w-2 rounded-full bg-emerald-300" id="api-status-dot"></span>
+          <span id="lbl-api-text">API: Gemini Flash</span>
           </button>
 
           <!-- Login / Profile Button -->
           <div id="auth-header-container">
-            <button onclick="switchMainView('login')" class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#064e3b] text-xs font-extrabold rounded-lg shadow transition">
+            <button onclick="switchMainView('login')"
+              class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#064e3b] text-xs font-extrabold rounded-lg shadow transition">
               Login
             </button>
           </div>
@@ -161,22 +259,31 @@
       <div class="space-y-0.5">
         <div class="text-sm font-bold text-slate-900 flex items-center gap-2">
           <span>🔑 Google Gemini 1.5 Flash API Key</span>
-          <span id="badge-key-state" class="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full font-mono font-bold">Active in Protected Memory</span>
+          <span id="badge-key-state"
+            class="text-xs bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full font-mono font-bold">Active
+            in Protected Memory</span>
         </div>
         <p class="text-xs text-slate-600">
-          Enter your Gemini API Key. Raw credentials are never echoed back in the input box to prevent clipboard extraction.
+          Enter your Gemini API Key. Raw credentials are never echoed back in the input box to prevent clipboard
+          extraction.
         </p>
       </div>
       <div class="flex items-center space-x-2 w-full md:w-auto">
         <div class="relative w-full md:w-80">
-          <input type="password" id="input-gemini-key" autocomplete="new-password" oncopy="return false;" oncut="return false;" placeholder="Paste Gemini API Key (AIzaSy...)" class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-mono text-slate-900 w-full focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none">
-          <div id="key-masked-display" class="hidden absolute inset-0 bg-slate-100 border border-emerald-500 rounded-lg px-3 py-2 text-xs font-mono text-emerald-700 flex items-center justify-between select-none">
+          <input type="password" id="input-gemini-key" autocomplete="new-password" oncopy="return false;"
+            oncut="return false;" placeholder="Paste Gemini API Key (AIzaSy...)"
+            class="bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-xs font-mono text-slate-900 w-full focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none">
+          <div id="key-masked-display"
+            class="hidden absolute inset-0 bg-slate-100 border border-emerald-500 rounded-lg px-3 py-2 text-xs font-mono text-emerald-700 flex items-center justify-between select-none">
             <span>●●●●●●●●●●●●●●●● [Active & Protected]</span>
             <span class="text-[10px] text-slate-500 font-bold">Encrypted</span>
           </div>
         </div>
-        <button onclick="saveGeminiKey()" class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-sm">Save Key</button>
-        <button onclick="clearGeminiKey()" class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-700 border border-red-300 text-xs font-semibold rounded-lg transition whitespace-nowrap">Revoke</button>
+        <button onclick="saveGeminiKey()"
+          class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-sm">Save
+          Key</button>
+        <button onclick="clearGeminiKey()"
+          class="px-3 py-2 bg-red-50 hover:bg-red-100 text-red-700 border border-red-300 text-xs font-semibold rounded-lg transition whitespace-nowrap">Revoke</button>
         <button onclick="toggleApiKeyModal()" class="text-slate-400 hover:text-slate-700 px-2 text-lg">✕</button>
       </div>
     </div>
@@ -186,25 +293,30 @@
   <!-- 2. HOME PAGE (EXACT GenerativeAI.net HERO & CARDS GRID)   -->
   <!-- ======================================================== -->
   <div id="view-home" class="flex-1 flex flex-col">
-    
+
     <!-- Hero Section (Matching image_8ac1a5.jpg) -->
-    <section class="bg-[#e6f4ea] py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-emerald-100 text-center relative overflow-hidden">
+    <section
+      class="bg-[#e6f4ea] py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-emerald-100 text-center relative overflow-hidden">
       <div class="max-w-5xl mx-auto space-y-6">
         <h1 class="text-4xl sm:text-6xl font-extrabold text-[#052e16] tracking-tight leading-tight font-display">
           Less than 1% of organizations truly benefit from AI.
         </h1>
-        
+
         <p class="text-lg sm:text-2xl font-bold text-[#064e3b] max-w-3xl mx-auto leading-relaxed">
           Most AI projects fail to deliver ROI, stuck in endless pilots.<br class="hidden sm:inline">
           We build and implement defense-grade AI engines that drive real mission outcomes. Fast.
         </p>
 
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button onclick="switchMainView('services')" class="px-8 py-4 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all uppercase tracking-wider flex items-center gap-2">
+          <button onclick="switchMainView('services')"
+            class="px-8 py-4 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all uppercase tracking-wider flex items-center gap-2">
             <span>GET OUR 60-SEC TRANSFORMATION</span>
-            <svg class="w-5 h-5 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            <svg class="w-5 h-5 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </button>
-          <button onclick="switchMainView('login')" class="px-7 py-4 bg-white hover:bg-slate-50 text-[#064e3b] font-bold text-sm sm:text-base rounded-xl border border-emerald-200 shadow-sm transition">
+          <button onclick="switchMainView('login')"
+            class="px-7 py-4 bg-white hover:bg-slate-50 text-[#064e3b] font-bold text-sm sm:text-base rounded-xl border border-emerald-200 shadow-sm transition">
             Login (RBAC Clearance)
           </button>
         </div>
@@ -213,11 +325,14 @@
 
     <!-- Subtle Ticker Banner (Matching image_8abd40.jpg pink banner) -->
     <section class="bg-[#fce7f3] border-b border-pink-200 py-3.5 px-4 text-center">
-      <div class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-pink-900">
+      <div
+        class="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-xs sm:text-sm font-semibold text-pink-900">
         <span>Stay ahead of critical intelligence with our Verified Deliverables Compiler!</span>
         <div class="flex items-center space-x-2">
-          <input type="email" placeholder="Email" class="px-3 py-1.5 rounded-lg border border-pink-300 text-xs text-slate-800 bg-white focus:outline-none focus:ring-1 focus:ring-pink-500">
-          <button onclick="alert('Subscribed to NTRO Intelligence Updates!')" class="px-3 py-1.5 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-lg transition">Subscribe!</button>
+          <input type="email" placeholder="Email"
+            class="px-3 py-1.5 rounded-lg border border-pink-300 text-xs text-slate-800 bg-white focus:outline-none focus:ring-1 focus:ring-pink-500">
+          <button onclick="alert('Subscribed to NTRO Intelligence Updates!')"
+            class="px-3 py-1.5 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-lg transition">Subscribe!</button>
         </div>
       </div>
     </section>
@@ -233,9 +348,10 @@
 
       <!-- Pastel Colored Interactive Cards Grid with Hover Effects -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        
+
         <!-- Card 1: Call-To-Action Tile (White) -->
-        <div onclick="switchMainView('services')" class="hover-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col justify-between text-center min-h-[200px] cursor-pointer group shadow-sm">
+        <div onclick="switchMainView('services')"
+          class="hover-card bg-white p-6 rounded-3xl border border-slate-200 flex flex-col justify-between text-center min-h-[200px] cursor-pointer group shadow-sm">
           <div class="my-auto space-y-2">
             <div class="text-sm font-bold text-slate-700">Want to test a verified deliverable?</div>
             <p class="text-xs text-slate-500">Input documents, web links, images, or audio</p>
@@ -246,23 +362,32 @@
         </div>
 
         <!-- Card 2: Ingestion Engine (Pastel Sky Blue #e0f2fe) -->
-        <div onclick="switchMainView('services')" class="hover-card bg-[#e0f2fe] p-6 rounded-3xl border border-sky-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('services')"
+          class="hover-card bg-[#e0f2fe] p-6 rounded-3xl border border-sky-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-sky-900 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">DOC</div>
-            <span class="text-[10px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-full">PyMuPDF / Mammoth</span>
+            <div
+              class="h-10 w-10 bg-sky-900 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              DOC</div>
+            <span class="text-[10px] font-bold text-sky-800 bg-sky-100 px-2 py-0.5 rounded-full">PyMuPDF /
+              Mammoth</span>
           </div>
           <div class="space-y-1 mt-4">
             <h3 class="font-extrabold text-lg text-slate-900">Multimodal Ingestion</h3>
-            <div class="text-[11px] font-bold text-sky-800 uppercase tracking-wider">PDF • Word • Web • OCR • Video</div>
+            <div class="text-[11px] font-bold text-sky-800 uppercase tracking-wider">PDF • Word • Web • OCR • Video
+            </div>
             <p class="text-xs text-slate-600">Normalizes heterogeneous inputs into verified semantic text.</p>
           </div>
         </div>
 
         <!-- Card 3: Gemini Multimodal Suite (Pastel Purple #f3e8ff) -->
-        <div onclick="switchMainView('services')" class="hover-card bg-[#f3e8ff] p-6 rounded-3xl border border-purple-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('services')"
+          class="hover-card bg-[#f3e8ff] p-6 rounded-3xl border border-purple-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-[#4338ca] text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">AI</div>
-            <span class="text-[10px] font-bold text-purple-800 bg-purple-100 px-2 py-0.5 rounded-full">Gemini Flash</span>
+            <div
+              class="h-10 w-10 bg-[#4338ca] text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              AI</div>
+            <span class="text-[10px] font-bold text-purple-800 bg-purple-100 px-2 py-0.5 rounded-full">Gemini
+              Flash</span>
           </div>
           <div class="space-y-1 mt-4">
             <h3 class="font-extrabold text-lg text-slate-900">Source-Grounded RAG</h3>
@@ -272,36 +397,50 @@
         </div>
 
         <!-- Card 4: Permissioned Blockchain (Pastel Mint #dcfce7) -->
-        <div onclick="switchMainView('blockchain')" class="hover-card bg-[#dcfce7] p-6 rounded-3xl border border-emerald-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('blockchain')"
+          class="hover-card bg-[#dcfce7] p-6 rounded-3xl border border-emerald-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-emerald-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">PoA</div>
-            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">SHA-256 Ledger</span>
+            <div
+              class="h-10 w-10 bg-emerald-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              PoA</div>
+            <span class="text-[10px] font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded-full">SHA-256
+              Ledger</span>
           </div>
           <div class="space-y-1 mt-4">
             <h3 class="font-extrabold text-lg text-slate-900">Blockchain Provenance</h3>
-            <div class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">Tamper-Evident Merkle Proof</div>
+            <div class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider">Tamper-Evident Merkle Proof
+            </div>
             <p class="text-xs text-slate-600">Off-chain storage isolation with on-chain cryptographic stamps.</p>
           </div>
         </div>
 
         <!-- Card 5: PowerPoint .PPTX Generator (Pastel Orange #ffedd5) -->
-        <div onclick="switchMainView('services')" class="hover-card bg-[#ffedd5] p-6 rounded-3xl border border-orange-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('services')"
+          class="hover-card bg-[#ffedd5] p-6 rounded-3xl border border-orange-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-amber-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">PPTX</div>
-            <span class="text-[10px] font-bold text-orange-800 bg-orange-100 px-2 py-0.5 rounded-full">PowerPoint Engine</span>
+            <div
+              class="h-10 w-10 bg-amber-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              PPTX</div>
+            <span class="text-[10px] font-bold text-orange-800 bg-orange-100 px-2 py-0.5 rounded-full">PowerPoint
+              Engine</span>
           </div>
           <div class="space-y-1 mt-4">
             <h3 class="font-extrabold text-lg text-slate-900">PowerPoint Export</h3>
-            <div class="text-[11px] font-bold text-orange-800 uppercase tracking-wider">Native Slides & Speaker Notes</div>
+            <div class="text-[11px] font-bold text-orange-800 uppercase tracking-wider">Native Slides & Speaker Notes
+            </div>
             <p class="text-xs text-slate-600">Downloads ready-to-present Microsoft PowerPoint files.</p>
           </div>
         </div>
 
         <!-- Card 6: Video Package (Pastel Rose #fce7f3) -->
-        <div onclick="switchMainView('services')" class="hover-card bg-[#fce7f3] p-6 rounded-3xl border border-pink-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('services')"
+          class="hover-card bg-[#fce7f3] p-6 rounded-3xl border border-pink-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-pink-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">MP4</div>
-            <span class="text-[10px] font-bold text-pink-800 bg-pink-100 px-2 py-0.5 rounded-full">Video Production</span>
+            <div
+              class="h-10 w-10 bg-pink-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              MP4</div>
+            <span class="text-[10px] font-bold text-pink-800 bg-pink-100 px-2 py-0.5 rounded-full">Video
+              Production</span>
           </div>
           <div class="space-y-1 mt-4">
             <h3 class="font-extrabold text-lg text-slate-900">Video & Storyboard</h3>
@@ -311,9 +450,12 @@
         </div>
 
         <!-- Card 7: Social Intelligence (Pastel Amber #fef3c7) -->
-        <div onclick="switchMainView('services')" class="hover-card bg-[#fef3c7] p-6 rounded-3xl border border-amber-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('services')"
+          class="hover-card bg-[#fef3c7] p-6 rounded-3xl border border-amber-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-amber-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">SOC</div>
+            <div
+              class="h-10 w-10 bg-amber-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              SOC</div>
             <span class="text-[10px] font-bold text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full">LinkedIn & X</span>
           </div>
           <div class="space-y-1 mt-4">
@@ -324,14 +466,18 @@
         </div>
 
         <!-- Card 8: RBAC & NIST CSF (Pastel Slate #f1f5f9) -->
-        <div onclick="switchMainView('login')" class="hover-card bg-[#f1f5f9] p-6 rounded-3xl border border-slate-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
+        <div onclick="switchMainView('login')"
+          class="hover-card bg-[#f1f5f9] p-6 rounded-3xl border border-slate-200 flex flex-col justify-between min-h-[200px] cursor-pointer shadow-sm">
           <div class="flex items-center justify-between">
-            <div class="h-10 w-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">RBAC</div>
+            <div
+              class="h-10 w-10 bg-slate-800 text-white rounded-xl flex items-center justify-center font-bold text-xs font-mono">
+              RBAC</div>
             <span class="text-[10px] font-bold text-slate-800 bg-slate-200 px-2 py-0.5 rounded-full">3 Role Tiers</span>
           </div>
           <div class="space-y-1 mt-4">
             <h3 class="font-extrabold text-lg text-slate-900">Security Clearance</h3>
-            <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Operator • Commander • Auditor</div>
+            <div class="text-[11px] font-bold text-slate-700 uppercase tracking-wider">Operator • Commander • Auditor
+            </div>
             <p class="text-xs text-slate-600">NIST SP 800-53 and STIX 2.1 government standards aligned.</p>
           </div>
         </div>
@@ -346,21 +492,27 @@
   <!-- ======================================================== -->
   <div id="view-services" class="hidden flex-1 flex flex-col bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full space-y-6">
-      
+
       <!-- Top Header in Studio -->
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 shadow-sm">
         <div>
           <div class="flex items-center space-x-2">
-            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-display">Intelligence Transformation Studio</h2>
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Live Engine</span>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-display">Intelligence Transformation
+              Studio</h2>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Live
+              Engine</span>
           </div>
-          <p class="text-xs sm:text-sm text-slate-600 mt-1">Submit documents, live web articles, prompts, images, or videos to generate verified audience-tailored deliverables.</p>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">Submit documents, live web articles, prompts, images, or
+            videos to generate verified audience-tailored deliverables.</p>
         </div>
 
         <!-- Clearance / Account Badge -->
         <div class="flex items-center space-x-3 bg-slate-50 border border-slate-200 rounded-xl p-3 shadow-inner">
           <span class="text-xs text-slate-500 font-bold uppercase">Clearance:</span>
-          <span id="studio-role-display" class="font-mono font-bold text-xs text-[#064e3b] bg-emerald-100/70 border border-emerald-300 px-2.5 py-1 rounded-lg">OP-101 (Operator)</span>
+          <span id="studio-role-display"
+            class="font-mono font-bold text-xs text-[#064e3b] bg-emerald-100/70 border border-emerald-300 px-2.5 py-1 rounded-lg">OP-101
+            (Operator)</span>
           <button onclick="switchMainView('login')" class="text-xs text-[#047857] hover:underline font-bold">
             Switch Role
           </button>
@@ -372,7 +524,7 @@
 
         <!-- Left Column: Source Input & Parameters (5 Cols) -->
         <div class="lg:col-span-5 space-y-5">
-          
+
           <!-- Source Ingestion Card -->
           <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
             <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -380,7 +532,8 @@
               <!-- Source Information Form (Problem Statement Types) -->
               <div class="flex items-center space-x-1.5 text-xs">
                 <span class="text-slate-500 font-medium">Form:</span>
-                <select id="source-form-select" class="bg-slate-50 text-[#064e3b] border border-slate-200 rounded-lg px-2.5 py-1 font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
+                <select id="source-form-select"
+                  class="bg-slate-50 text-[#064e3b] border border-slate-200 rounded-lg px-2.5 py-1 font-semibold focus:ring-2 focus:ring-emerald-500 focus:outline-none">
                   <option>Incident Report</option>
                   <option>Security Advisory</option>
                   <option>Policy Document</option>
@@ -394,71 +547,100 @@
 
             <!-- Ingestion Mode Tabs -->
             <div class="flex border-b border-slate-200 text-xs sm:text-sm overflow-x-auto space-x-1 pb-1">
-              <button onclick="setInputMode('doc')" id="mode-tab-doc" class="px-3 py-1.5 border-b-2 border-[#047857] text-[#047857] font-bold whitespace-nowrap flex items-center gap-1 transition">
+              <button onclick="setInputMode('doc')" id="mode-tab-doc"
+                class="px-3 py-1.5 border-b-2 border-[#047857] text-[#047857] font-bold whitespace-nowrap flex items-center gap-1 transition">
                 <span>📄 Document</span>
               </button>
-              <button onclick="setInputMode('web')" id="mode-tab-web" class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
+              <button onclick="setInputMode('web')" id="mode-tab-web"
+                class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
                 <span>🌐 Web Article</span>
               </button>
-              <button onclick="setInputMode('prompt')" id="mode-tab-prompt" class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
+              <button onclick="setInputMode('prompt')" id="mode-tab-prompt"
+                class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
                 <span>💬 Prompt</span>
               </button>
-              <button onclick="setInputMode('image')" id="mode-tab-image" class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
+              <button onclick="setInputMode('image')" id="mode-tab-image"
+                class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
                 <span>🖼️ Image OCR</span>
               </button>
-              <button onclick="setInputMode('video')" id="mode-tab-video" class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
+              <button onclick="setInputMode('video')" id="mode-tab-video"
+                class="px-3 py-1.5 text-slate-500 hover:text-slate-900 whitespace-nowrap flex items-center gap-1 transition">
                 <span>🎥 Video / Audio</span>
               </button>
             </div>
 
             <!-- 1. Document Sub-Panel (PDF, Word .docx, TXT) -->
-            <div id="panel-doc-upload" class="p-4 bg-slate-50 border border-dashed border-slate-300 rounded-xl space-y-2.5">
+            <div id="panel-doc-upload"
+              class="p-4 bg-slate-50 border border-dashed border-slate-300 rounded-xl space-y-2.5">
               <div class="flex flex-col sm:flex-row items-center justify-between gap-2">
-                <input type="file" id="file-input" onchange="handleFileUpload(event)" accept=".txt,.pdf,.docx,.doc,.md,.json,.csv,.log" class="hidden">
-                <button onclick="document.getElementById('file-input').click()" class="w-full sm:w-auto px-4 py-2 bg-white hover:bg-slate-100 text-[#064e3b] rounded-lg text-xs sm:text-sm font-bold border border-slate-200 shadow-sm flex items-center justify-center gap-2 transition">
-                  <svg class="w-4 h-4 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/></svg>
+                <input type="file" id="file-input" onchange="handleFileUpload(event)"
+                  accept=".txt,.pdf,.docx,.doc,.md,.json,.csv,.log" class="hidden">
+                <button onclick="document.getElementById('file-input').click()"
+                  class="w-full sm:w-auto px-4 py-2 bg-white hover:bg-slate-100 text-[#064e3b] rounded-lg text-xs sm:text-sm font-bold border border-slate-200 shadow-sm flex items-center justify-center gap-2 transition">
+                  <svg class="w-4 h-4 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                  </svg>
                   <span>Upload Document (PDF, Word .docx, TXT)</span>
                 </button>
                 <span class="text-xs text-slate-500 font-mono">PDF.js & Mammoth Active</span>
               </div>
-              <p class="text-xs text-slate-500" id="file-upload-status">Upload reports, research papers, or advisories for parsing.</p>
+              <p class="text-xs text-slate-500" id="file-upload-status">Upload reports, research papers, or advisories
+                for parsing.</p>
             </div>
 
             <!-- 2. Web Article Sub-Panel -->
             <div id="panel-web-upload" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
               <div class="flex space-x-2">
-                <input type="text" id="web-url-input" placeholder="Enter article URL (e.g. https://en.wikipedia.org/wiki/Anime or news link)" class="bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs sm:text-sm font-mono text-slate-900 w-full focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none">
-                <button onclick="scrapeLiveUrl()" id="btn-scrape-url" class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs sm:text-sm font-bold rounded-lg transition whitespace-nowrap flex items-center gap-1.5 shadow-sm">
-                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/></svg>
+                <input type="text" id="web-url-input"
+                  placeholder="Enter article URL (e.g. https://en.wikipedia.org/wiki/Anime or news link)"
+                  class="bg-white border border-slate-300 rounded-lg px-3 py-2 text-xs sm:text-sm font-mono text-slate-900 w-full focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:outline-none">
+                <button onclick="scrapeLiveUrl()" id="btn-scrape-url"
+                  class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs sm:text-sm font-bold rounded-lg transition whitespace-nowrap flex items-center gap-1.5 shadow-sm">
+                  <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                  </svg>
                   <span>Scrape Live Web</span>
                 </button>
               </div>
-              <p class="text-xs text-slate-500" id="web-scrape-status">Live web scraper extracts real articles and public advisories directly into memory.</p>
+              <p class="text-xs text-slate-500" id="web-scrape-status">Live web scraper extracts real articles and
+                public advisories directly into memory.</p>
             </div>
 
             <!-- 3. Prompt Sub-Panel -->
-            <div id="panel-prompt-upload" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs">
+            <div id="panel-prompt-upload"
+              class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2 text-xs">
               <div class="font-bold text-[#047857] flex items-center gap-1">
                 <span>💬 Free-form Operator Directives & Context</span>
               </div>
-              <p class="text-xs text-slate-500">Provide direct natural language instructions or background context to guide the transformation.</p>
+              <p class="text-xs text-slate-500">Provide direct natural language instructions or background context to
+                guide the transformation.</p>
             </div>
 
             <!-- 4. Image & OCR Sub-Panel -->
             <div id="panel-image-upload" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
               <div class="flex items-center justify-between gap-2">
-                <input type="file" id="image-file-input" onchange="handleImageUpload(event)" accept="image/*" class="hidden">
-                <button onclick="document.getElementById('image-file-input').click()" class="px-4 py-2 bg-white hover:bg-slate-100 text-[#064e3b] rounded-lg text-xs sm:text-sm font-bold border border-slate-200 shadow-sm flex items-center gap-1.5 transition">
-                  <svg class="w-4 h-4 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                <input type="file" id="image-file-input" onchange="handleImageUpload(event)" accept="image/*"
+                  class="hidden">
+                <button onclick="document.getElementById('image-file-input').click()"
+                  class="px-4 py-2 bg-white hover:bg-slate-100 text-[#064e3b] rounded-lg text-xs sm:text-sm font-bold border border-slate-200 shadow-sm flex items-center gap-1.5 transition">
+                  <svg class="w-4 h-4 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
                   <span>Upload Image (Screenshot / Diagram)</span>
                 </button>
               </div>
-              <div id="image-preview-container" class="hidden p-3 rounded-lg bg-white border border-slate-200 flex items-center gap-3">
-                <img id="image-preview-element" class="h-20 w-auto rounded border border-slate-200 object-contain shadow-sm" alt="Preview">
+              <div id="image-preview-container"
+                class="hidden p-3 rounded-lg bg-white border border-slate-200 flex items-center gap-3">
+                <img id="image-preview-element"
+                  class="h-20 w-auto rounded border border-slate-200 object-contain shadow-sm" alt="Preview">
                 <div class="space-y-1 text-xs text-slate-600 flex-1">
                   <div class="font-bold text-slate-900" id="image-meta-name">image.png</div>
                   <div class="font-mono text-[11px] text-slate-500" id="image-meta-details">Specs</div>
-                  <button onclick="runOcrExtraction()" id="btn-run-ocr" class="px-3 py-1 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded shadow-sm transition">
+                  <button onclick="runOcrExtraction()" id="btn-run-ocr"
+                    class="px-3 py-1 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded shadow-sm transition">
                     Extract Text via OCR
                   </button>
                 </div>
@@ -468,27 +650,37 @@
             <!-- 5. Video Sub-Panel -->
             <div id="panel-video-upload" class="hidden p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
               <div class="flex items-center justify-between gap-2">
-                <input type="file" id="video-file-input" onchange="handleVideoUpload(event)" accept="video/*" class="hidden">
-                <button onclick="document.getElementById('video-file-input').click()" class="px-4 py-2 bg-white hover:bg-slate-100 text-[#064e3b] rounded-lg text-xs sm:text-sm font-bold border border-slate-200 shadow-sm flex items-center gap-1.5 transition">
-                  <svg class="w-4 h-4 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                <input type="file" id="video-file-input" onchange="handleVideoUpload(event)" accept="video/*"
+                  class="hidden">
+                <button onclick="document.getElementById('video-file-input').click()"
+                  class="px-4 py-2 bg-white hover:bg-slate-100 text-[#064e3b] rounded-lg text-xs sm:text-sm font-bold border border-slate-200 shadow-sm flex items-center gap-1.5 transition">
+                  <svg class="w-4 h-4 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
                   <span>Upload Video File (.mp4)</span>
                 </button>
               </div>
-              <div id="video-preview-container" class="hidden p-3 rounded-lg bg-white border border-slate-200 space-y-2">
+              <div id="video-preview-container"
+                class="hidden p-3 rounded-lg bg-white border border-slate-200 space-y-2">
                 <video id="video-player-element" controls class="w-full max-h-36 rounded-lg bg-black"></video>
-                <button onclick="extractVideoTranscript()" id="btn-extract-video-audio" class="px-3 py-1 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded shadow-sm transition">
+                <button onclick="extractVideoTranscript()" id="btn-extract-video-audio"
+                  class="px-3 py-1 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded shadow-sm transition">
                   Extract Video Speech Transcript
                 </button>
               </div>
             </div>
 
             <!-- Clean Source Textarea (Starts Empty for Live Demo) -->
-            <textarea id="source-input" rows="9" oninput="onSourceInputChange()" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-sm sm:text-base font-sans text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition leading-relaxed" placeholder="Type, paste, or upload source intelligence, report, news article, or prompt for transformation..."></textarea>
-            
+            <textarea id="source-input" rows="9" oninput="onSourceInputChange()"
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-sm sm:text-base font-sans text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition leading-relaxed"
+              placeholder="Type, paste, or upload source intelligence, report, news article, or prompt for transformation..."></textarea>
+
             <!-- Textarea Metadata Bar -->
             <div class="flex items-center justify-between text-xs text-slate-500 pt-1">
               <div class="flex items-center space-x-2">
-                <span>SHA-256: <code id="source-hash-preview" class="text-slate-700 font-mono text-[11px] font-bold">Waiting for input...</code></span>
+                <span>SHA-256: <code id="source-hash-preview"
+                    class="text-slate-700 font-mono text-[11px] font-bold">Waiting for input...</code></span>
               </div>
               <div class="flex items-center space-x-3">
                 <span id="token-counter" class="font-bold text-[#047857]">0 words</span>
@@ -502,7 +694,8 @@
 
           <!-- Parameters Card (Simplified, Plain-English Options for Judges) -->
           <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-2">
+            <h3
+              class="text-sm font-bold text-slate-900 uppercase tracking-wider flex items-center justify-between border-b border-slate-100 pb-2">
               <span>Audience & Generation Parameters</span>
               <span class="text-xs text-[#047857] font-semibold">Semantic Router</span>
             </h3>
@@ -510,7 +703,8 @@
             <div class="grid grid-cols-2 gap-3.5 text-sm">
               <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Target Audience</label>
-                <select id="param-audience" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                <select id="param-audience"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
                   <option selected>General Citizens & Public</option>
                   <option>Technical & IT Teams</option>
                   <option>Senior Executives & Leaders</option>
@@ -520,7 +714,8 @@
 
               <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Tone of Voice</label>
-                <select id="param-tone" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                <select id="param-tone"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
                   <option selected>Simple & Informative</option>
                   <option>Urgent Alert</option>
                   <option>Professional & Formal</option>
@@ -530,7 +725,8 @@
 
               <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Language</label>
-                <select id="param-language" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                <select id="param-language"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
                   <option selected>English</option>
                   <option>Hindi (हिन्दी)</option>
                   <option>Japanese (日本語)</option>
@@ -541,7 +737,8 @@
 
               <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Detail Level</label>
-                <select id="param-detail" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                <select id="param-detail"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
                   <option>Brief Summary (High Level)</option>
                   <option selected>Balanced (Standard)</option>
                   <option>In-Depth (Comprehensive)</option>
@@ -550,7 +747,8 @@
 
               <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Primary Goal</label>
-                <select id="param-objective" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                <select id="param-objective"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
                   <option selected>Public Awareness (Inform everyone)</option>
                   <option>Immediate Action (Technical fix)</option>
                   <option>Executive Decision (For leaders to approve)</option>
@@ -560,7 +758,8 @@
 
               <div>
                 <label class="block text-xs font-bold text-slate-600 mb-1">Document Style</label>
-                <select id="param-style" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
+                <select id="param-style"
+                  class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3 py-2 text-slate-800 focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm">
                   <option selected>Government Advisory Format</option>
                   <option>Executive Briefing Format</option>
                   <option>Public Information Release</option>
@@ -572,44 +771,65 @@
             <!-- Deliverable Selection (All 7 Deliverables) -->
             <div class="pt-3 border-t border-slate-100">
               <div class="flex items-center justify-between mb-2">
-                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Select Output Deliverables</label>
-                <button onclick="toggleAllArtefacts()" class="text-xs text-[#047857] font-bold hover:underline">Select All</button>
+                <label class="text-xs font-bold text-slate-700 uppercase tracking-wider">Select Output
+                  Deliverables</label>
+                <button onclick="toggleAllArtefacts()" class="text-xs text-[#047857] font-bold hover:underline">Select
+                  All</button>
               </div>
               <div class="grid grid-cols-2 gap-2 text-sm">
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                  <input type="checkbox" id="chk-advisory" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                  <input type="checkbox" id="chk-advisory" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
                   <span class="font-medium text-slate-800">🛡️ Structured Advisory</span>
                 </label>
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                  <input type="checkbox" id="chk-executive" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                  <input type="checkbox" id="chk-executive" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
                   <span class="font-medium text-slate-800">📑 Executive Brief (BLUF)</span>
                 </label>
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                  <input type="checkbox" id="chk-video" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                  <input type="checkbox" id="chk-video" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
                   <span class="font-medium text-slate-800">📹 Video Package (Script/Scenes)</span>
                 </label>
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                  <input type="checkbox" id="chk-linkedin" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                  <input type="checkbox" id="chk-linkedin" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
                   <span class="font-medium text-slate-800">💼 LinkedIn Post</span>
                 </label>
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                  <input type="checkbox" id="chk-twitter" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                  <input type="checkbox" id="chk-twitter" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
                   <span class="font-medium text-slate-800">🐦 Twitter / X Thread</span>
                 </label>
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
-                  <input type="checkbox" id="chk-infographic" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition">
+                  <input type="checkbox" id="chk-infographic" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
                   <span class="font-medium text-slate-800">📊 Infographic Blueprint</span>
                 </label>
-                <label class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition col-span-2">
-                  <input type="checkbox" id="chk-presentation" checked class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
-                  <span class="font-medium text-slate-800">📽️ Presentation Slides (with PowerPoint .pptx Download)</span>
+                <label
+                  class="flex items-center space-x-2.5 bg-slate-50 p-2.5 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-100 transition col-span-2">
+                  <input type="checkbox" id="chk-presentation" checked
+                    class="rounded text-[#047857] focus:ring-emerald-500 h-4 w-4">
+                  <span class="font-medium text-slate-800">📽️ Presentation Slides (with PowerPoint .pptx
+                    Download)</span>
                 </label>
               </div>
             </div>
 
             <!-- Transformation Trigger Button (GenerativeAI.net Green Style) -->
-            <button onclick="runTransformation()" id="btn-transform" class="w-full py-4 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 cursor-pointer mt-4 uppercase tracking-wider">
-              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            <button onclick="runTransformation()" id="btn-transform"
+              class="w-full py-4 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-base rounded-xl shadow-lg hover:shadow-xl transition-all flex items-center justify-center space-x-2 cursor-pointer mt-4 uppercase tracking-wider">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
               <span>RUN 8-STAGE SECURE TRANSFORMATION</span>
             </button>
 
@@ -626,7 +846,8 @@
                 <span class="h-2.5 w-2.5 rounded-full bg-[#047857]"></span>
                 <span>8-Stage Processing Pipeline</span>
               </h3>
-              <span id="pipeline-status-badge" class="text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-full font-bold">READY</span>
+              <span id="pipeline-status-badge"
+                class="text-xs font-mono text-emerald-800 bg-emerald-50 border border-emerald-300 px-3 py-1 rounded-full font-bold">READY</span>
             </div>
 
             <!-- Pipeline Steps Horizontal Grid -->
@@ -643,38 +864,63 @@
           </div>
 
           <!-- Generated Deliverables Viewport -->
-          <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col min-h-[580px] shadow-sm">
-            
+          <div
+            class="bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col min-h-[580px] shadow-sm">
+
             <!-- Output Tabs & Export Controls Header -->
-            <div class="border-b border-slate-200 bg-slate-50/80 px-5 py-3.5 flex items-center justify-between overflow-x-auto">
+            <div
+              class="border-b border-slate-200 bg-slate-50/80 px-5 py-3.5 flex items-center justify-between overflow-x-auto">
               <div class="flex space-x-1.5" id="output-tabs-container">
-                <button class="output-tab-btn px-4 py-2 text-xs sm:text-sm rounded-lg bg-[#047857] text-white font-bold whitespace-nowrap shadow-sm">🛡️ Advisory</button>
+                <button
+                  class="output-tab-btn px-4 py-2 text-xs sm:text-sm rounded-lg bg-[#047857] text-white font-bold whitespace-nowrap shadow-sm">🛡️
+                  Advisory</button>
               </div>
 
               <!-- Export Controls -->
               <div class="flex items-center space-x-2 pl-3">
-                <button onclick="copyCurrentArtefact()" title="Copy to Clipboard" class="p-2 text-slate-600 hover:text-[#047857] rounded-lg hover:bg-slate-100 transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                <button onclick="copyCurrentArtefact()" title="Copy to Clipboard"
+                  class="p-2 text-slate-600 hover:text-[#047857] rounded-lg hover:bg-slate-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+                  </svg>
                 </button>
-                <button onclick="downloadCurrentArtefact()" title="Download Markdown (.md)" class="p-2 text-slate-600 hover:text-[#047857] rounded-lg hover:bg-slate-100 transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                <button onclick="downloadCurrentArtefact()" title="Download Markdown (.md)"
+                  class="p-2 text-slate-600 hover:text-[#047857] rounded-lg hover:bg-slate-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
                 </button>
                 <!-- Genuine .PPTX PowerPoint Download Option -->
-                <button onclick="downloadPptx()" id="btn-export-pptx" title="Export Presentation to Microsoft PowerPoint (.pptx)" class="px-3 py-1.5 text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg transition flex items-center gap-1.5 text-xs font-mono font-bold shadow-sm">
-                  <svg class="w-4 h-4 text-amber-700" fill="currentColor" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5h-2V13h2c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5zm1 6.5H9V16h1.5c1.38 0 2.5-1.12 2.5-2.5S11.88 11 10.5 11H7v7H5.5V6H10c2.21 0 4 1.79 4 4 0 1.28-.6 2.42-1.54 3.16.92.54 1.54 1.56 1.54 2.84 0 1.66-1.34 3-3 3z"/></svg>
+                <button onclick="downloadPptx()" id="btn-export-pptx"
+                  title="Export Presentation to Microsoft PowerPoint (.pptx)"
+                  class="px-3 py-1.5 text-amber-900 bg-amber-100 hover:bg-amber-200 border border-amber-300 rounded-lg transition flex items-center gap-1.5 text-xs font-mono font-bold shadow-sm">
+                  <svg class="w-4 h-4 text-amber-700" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-9.5 8.5h-2V13h2c.83 0 1.5-.67 1.5-1.5s-.67-1.5-1.5-1.5zm1 6.5H9V16h1.5c1.38 0 2.5-1.12 2.5-2.5S11.88 11 10.5 11H7v7H5.5V6H10c2.21 0 4 1.79 4 4 0 1.28-.6 2.42-1.54 3.16.92.54 1.54 1.56 1.54 2.84 0 1.66-1.34 3-3 3z" />
+                  </svg>
                   <span>Download .PPTX</span>
                 </button>
-                <button onclick="downloadJsonPackage()" title="Download JSON Verification Package" class="p-2 text-slate-600 hover:text-emerald-700 rounded-lg hover:bg-slate-100 transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                <button onclick="downloadJsonPackage()" title="Download JSON Verification Package"
+                  class="p-2 text-slate-600 hover:text-emerald-700 rounded-lg hover:bg-slate-100 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                  </svg>
                 </button>
               </div>
             </div>
 
             <!-- Metadata & Blockchain Status Bar -->
-            <div class="bg-slate-50 border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div
+              class="bg-slate-50 border-b border-slate-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
               <div class="flex items-center space-x-3">
                 <span class="text-emerald-700 font-bold flex items-center gap-1.5">
-                  <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  <svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   <span id="meta-grounding">99.4% Source Grounded</span>
                 </span>
                 <span class="text-slate-300">|</span>
@@ -682,10 +928,12 @@
                 <span class="text-slate-300">|</span>
                 <span class="text-[#047857] font-bold" id="meta-model-label">Gemini 1.5 Flash (Live)</span>
               </div>
-              
+
               <div class="flex items-center space-x-2">
-                <span class="text-slate-500">Block: <span class="text-[#047857] font-bold" id="meta-block">#844</span></span>
-                <button onclick="switchMainView('blockchain')" class="text-xs bg-emerald-50 hover:bg-emerald-100 text-[#047857] border border-emerald-300 font-bold px-3 py-1 rounded-lg transition">
+                <span class="text-slate-500">Block: <span class="text-[#047857] font-bold"
+                    id="meta-block">#844</span></span>
+                <button onclick="switchMainView('blockchain')"
+                  class="text-xs bg-emerald-50 hover:bg-emerald-100 text-[#047857] border border-emerald-300 font-bold px-3 py-1 rounded-lg transition">
                   Verify on Ledger →
                 </button>
               </div>
@@ -695,15 +943,20 @@
             <div class="p-8 flex-1 overflow-y-auto bg-white">
               <div id="artefact-body" class="prose-genai text-slate-800 text-base leading-relaxed select-text">
                 <div class="text-center py-16 text-slate-400 space-y-2">
-                  <svg class="w-12 h-12 mx-auto text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                  <svg class="w-12 h-12 mx-auto text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
                   <p class="font-bold text-slate-700 text-lg">Studio Ready for Live Demonstration.</p>
-                  <p class="text-xs text-slate-500">Upload a report, scrape a live web article, or enter text on the left, then click 'Run'.</p>
+                  <p class="text-xs text-slate-500">Upload a report, scrape a live web article, or enter text on the
+                    left, then click 'Run'.</p>
                 </div>
               </div>
             </div>
 
             <!-- Bottom Provenance Bar -->
-            <div class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-slate-500">
+            <div
+              class="bg-slate-50 border-t border-slate-200 px-6 py-3.5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs font-mono text-slate-500">
               <div class="flex items-center space-x-2">
                 <span class="text-slate-600 font-bold">SHA-256 Hash:</span>
                 <code id="meta-hash" class="text-[#047857] select-all font-bold text-xs">Waiting for run...</code>
@@ -726,33 +979,35 @@
   <!-- ======================================================== -->
   <!-- 4. LOGIN PAGE (DEDICATED RBAC AUTHENTICATION VIEW)       -->
   <!-- ======================================================== -->
-  <div id="view-login" class="hidden flex-1 flex flex-col justify-center items-center py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
+  <div id="view-login"
+    class="hidden flex-1 flex flex-col justify-center items-center py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
     <div class="max-w-2xl w-full space-y-8 bg-white p-8 sm:p-12 rounded-3xl shadow-xl border border-slate-200">
-      
+
       <!-- Brand & Title -->
       <div class="text-center space-y-3">
         <div class="h-12 w-12 mx-auto flex items-center justify-center">
           <svg class="h-10 w-10 text-[#047857]" viewBox="0 0 24 24" fill="currentColor">
-            <rect x="10" y="2" width="4" height="4" rx="1"/>
-            <rect x="6" y="6" width="4" height="4" rx="1"/>
-            <rect x="10" y="6" width="4" height="4" rx="1"/>
-            <rect x="14" y="6" width="4" height="4" rx="1"/>
-            <rect x="2" y="10" width="4" height="4" rx="1"/>
-            <rect x="6" y="10" width="4" height="4" rx="1"/>
-            <rect x="10" y="10" width="4" height="4" rx="1"/>
-            <rect x="14" y="10" width="4" height="4" rx="1"/>
-            <rect x="18" y="10" width="4" height="4" rx="1"/>
-            <rect x="6" y="14" width="4" height="4" rx="1"/>
-            <rect x="10" y="14" width="4" height="4" rx="1"/>
-            <rect x="14" y="14" width="4" height="4" rx="1"/>
-            <rect x="10" y="18" width="4" height="4" rx="1"/>
+            <rect x="10" y="2" width="4" height="4" rx="1" />
+            <rect x="6" y="6" width="4" height="4" rx="1" />
+            <rect x="10" y="6" width="4" height="4" rx="1" />
+            <rect x="14" y="6" width="4" height="4" rx="1" />
+            <rect x="2" y="10" width="4" height="4" rx="1" />
+            <rect x="6" y="10" width="4" height="4" rx="1" />
+            <rect x="10" y="10" width="4" height="4" rx="1" />
+            <rect x="14" y="10" width="4" height="4" rx="1" />
+            <rect x="18" y="10" width="4" height="4" rx="1" />
+            <rect x="6" y="14" width="4" height="4" rx="1" />
+            <rect x="10" y="14" width="4" height="4" rx="1" />
+            <rect x="14" y="14" width="4" height="4" rx="1" />
+            <rect x="10" y="18" width="4" height="4" rx="1" />
           </svg>
         </div>
         <h2 class="text-3xl font-extrabold text-[#052e16] font-display">
           Portal Single Sign-On (SSO)
         </h2>
         <p class="text-sm text-slate-600 max-w-md mx-auto">
-          Role-Based Access Control (RBAC) authentication. Select your official clearance below to enter the transformation studio.
+          Role-Based Access Control (RBAC) authentication. Select your official clearance below to enter the
+          transformation studio.
         </p>
       </div>
 
@@ -761,46 +1016,64 @@
         <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">Select Authorized Role to Enter:</div>
 
         <!-- Role 1: Operator -->
-        <div onclick="loginAsRole('operator')" class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#e0f2fe]/40 hover:bg-[#e0f2fe]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
+        <div onclick="loginAsRole('operator')"
+          class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#e0f2fe]/40 hover:bg-[#e0f2fe]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
           <div class="space-y-1">
             <div class="flex items-center space-x-2">
-              <span class="text-base font-extrabold text-slate-900 group-hover:text-[#064e3b]">🛡️ Operator (Admin / Creator)</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-sky-200 text-sky-900 font-mono text-xs font-bold">ID: OP-101</span>
+              <span class="text-base font-extrabold text-slate-900 group-hover:text-[#064e3b]">🛡️ Operator (Admin /
+                Creator)</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-sky-200 text-sky-900 font-mono text-xs font-bold">ID:
+                OP-101</span>
             </div>
-            <p class="text-xs text-slate-600">Full operational authority to upload multimodal source files, customize parameters, execute transformations, and export all 7 deliverables.</p>
-            <div class="text-[11px] text-sky-800 font-bold font-mono">Clearance: Ingest • Transform • Export (.pptx, Markdown, JSON)</div>
+            <p class="text-xs text-slate-600">Full operational authority to upload multimodal source files, customize
+              parameters, execute transformations, and export all 7 deliverables.</p>
+            <div class="text-[11px] text-sky-800 font-bold font-mono">Clearance: Ingest • Transform • Export (.pptx,
+              Markdown, JSON)</div>
           </div>
-          <button class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
+          <button
+            class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
             Sign In →
           </button>
         </div>
 
         <!-- Role 2: Commander -->
-        <div onclick="loginAsRole('commander')" class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#f3e8ff]/40 hover:bg-[#f3e8ff]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
+        <div onclick="loginAsRole('commander')"
+          class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#f3e8ff]/40 hover:bg-[#f3e8ff]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
           <div class="space-y-1">
             <div class="flex items-center space-x-2">
-              <span class="text-base font-extrabold text-slate-900 group-hover:text-purple-900">🎖️ Cyber Commander (Approver)</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-purple-200 text-purple-900 font-mono text-xs font-bold">ID: CMD-201</span>
+              <span class="text-base font-extrabold text-slate-900 group-hover:text-purple-900">🎖️ Cyber Commander
+                (Approver)</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-purple-200 text-purple-900 font-mono text-xs font-bold">ID:
+                CMD-201</span>
             </div>
-            <p class="text-xs text-slate-600">Executive authorization. Signs newly minted blockchain ledger blocks with official authority as <code>NTRO-NODE-ALPHA</code>.</p>
-            <div class="text-[11px] text-purple-800 font-bold font-mono">Clearance: Review Briefings • Executive Approver • Blockchain Signer</div>
+            <p class="text-xs text-slate-600">Executive authorization. Signs newly minted blockchain ledger blocks with
+              official authority as <code>NTRO-NODE-ALPHA</code>.</p>
+            <div class="text-[11px] text-purple-800 font-bold font-mono">Clearance: Review Briefings • Executive
+              Approver • Blockchain Signer</div>
           </div>
-          <button class="px-4 py-2 bg-purple-800 hover:bg-purple-900 text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
+          <button
+            class="px-4 py-2 bg-purple-800 hover:bg-purple-900 text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
             Sign In →
           </button>
         </div>
 
         <!-- Role 3: Auditor -->
-        <div onclick="loginAsRole('auditor')" class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#ffedd5]/40 hover:bg-[#ffedd5]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
+        <div onclick="loginAsRole('auditor')"
+          class="hover-card p-5 rounded-2xl border border-slate-200 bg-[#ffedd5]/40 hover:bg-[#ffedd5]/80 cursor-pointer transition flex items-start justify-between gap-4 group shadow-sm">
           <div class="space-y-1">
             <div class="flex items-center space-x-2">
-              <span class="text-base font-extrabold text-slate-900 group-hover:text-amber-900">⚖️ Compliance Auditor (Inspector)</span>
-              <span class="px-2.5 py-0.5 rounded-full bg-orange-200 text-orange-900 font-mono text-xs font-bold">ID: AUDIT-301</span>
+              <span class="text-base font-extrabold text-slate-900 group-hover:text-amber-900">⚖️ Compliance Auditor
+                (Inspector)</span>
+              <span class="px-2.5 py-0.5 rounded-full bg-orange-200 text-orange-900 font-mono text-xs font-bold">ID:
+                AUDIT-301</span>
             </div>
-            <p class="text-xs text-slate-600"><strong>Read-Only Inspection Mode:</strong> Can inspect the permissioned ledger, verify cryptographic hashes, and test the Tamper Lab. Content generation is locked.</p>
-            <div class="text-[11px] text-orange-800 font-bold font-mono">Clearance: Read-Only Audit • Verify Merkle Root • Test Tamper Lab</div>
+            <p class="text-xs text-slate-600"><strong>Read-Only Inspection Mode:</strong> Can inspect the permissioned
+              ledger, verify cryptographic hashes, and test the Tamper Lab. Content generation is locked.</p>
+            <div class="text-[11px] text-orange-800 font-bold font-mono">Clearance: Read-Only Audit • Verify Merkle Root
+              • Test Tamper Lab</div>
           </div>
-          <button class="px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
+          <button
+            class="px-4 py-2 bg-amber-700 hover:bg-amber-800 text-white text-xs font-bold rounded-xl shadow-sm transition whitespace-nowrap mt-1">
             Sign In →
           </button>
         </div>
@@ -809,7 +1082,8 @@
       <!-- Footer Help -->
       <div class="pt-4 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
         <span>Smart India Hackathon 2026 • PS 26154</span>
-        <button onclick="loginAsRole('operator')" class="font-bold text-[#047857] hover:underline flex items-center gap-1">
+        <button onclick="loginAsRole('operator')"
+          class="font-bold text-[#047857] hover:underline flex items-center gap-1">
           <span>Quick Launch (Demo Operator OP-101) →</span>
         </button>
       </div>
@@ -822,20 +1096,29 @@
   <!-- ======================================================== -->
   <div id="view-blockchain" class="hidden flex-1 flex flex-col bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full space-y-6">
-      
+
       <!-- Header & Top Metrics -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
+        <div
+          class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-slate-100 pb-4 mb-5">
           <div>
             <h2 class="text-xl sm:text-2xl font-bold text-slate-900 flex items-center gap-2">
-              <svg class="w-6 h-6 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+              <svg class="w-6 h-6 text-[#047857]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+              </svg>
               <span>Permissioned Blockchain Explorer & Provenance Ledger</span>
             </h2>
-            <p class="text-sm text-slate-600">Tamper-evident Proof-of-Authority (PoA) consensus network across authorized defense nodes.</p>
+            <p class="text-sm text-slate-600">Tamper-evident Proof-of-Authority (PoA) consensus network across
+              authorized defense nodes.</p>
           </div>
           <div class="flex items-center space-x-2 text-xs font-mono">
-            <span class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 border border-slate-200 font-bold">Consensus: <b class="text-[#047857]">PoA (NIST-Compliant)</b></span>
-            <span class="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">Mesh: NTRO-SECURE-MESH</span>
+            <span
+              class="px-3 py-1.5 rounded-lg bg-slate-100 text-slate-800 border border-slate-200 font-bold">Consensus: <b
+                class="text-[#047857]">PoA (NIST-Compliant)</b></span>
+            <span
+              class="px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold">Mesh:
+              NTRO-SECURE-MESH</span>
           </div>
         </div>
 
@@ -857,26 +1140,35 @@
             <div class="text-xs text-[#047857] mt-1 font-semibold">NTRO • CERT-In • Gateway</div>
           </div>
           <!-- Dynamic Breach Counter (Point 6) -->
-          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm transition-all" id="card-breach-counter">
+          <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 shadow-sm transition-all"
+            id="card-breach-counter">
             <div class="text-slate-500 font-semibold text-xs uppercase">Tamper Status</div>
-            <div class="text-2xl font-bold font-mono text-emerald-700 mt-1 transition-all" id="stat-tamper-state">0 Breaches</div>
-            <div class="text-xs text-slate-500 mt-1 font-medium" id="stat-tamper-sub">Ledger Verified • System Clean</div>
+            <div class="text-2xl font-bold font-mono text-emerald-700 mt-1 transition-all" id="stat-tamper-state">0
+              Breaches</div>
+            <div class="text-xs text-slate-500 mt-1 font-medium" id="stat-tamper-sub">Ledger Verified • System Clean
+            </div>
           </div>
         </div>
       </div>
 
       <!-- Interactive Tamper Detection Playground -->
       <div class="bg-white border border-slate-200 rounded-2xl p-6 space-y-4 shadow-sm">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+        <div
+          class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
           <div>
             <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
               <span class="p-1 rounded bg-amber-100 text-amber-800">⚡</span>
               <span>Interactive Tamper-Detection Lab (Evaluator Sandbox)</span>
             </h3>
-            <p class="text-sm text-slate-600">Type or edit ANY character in the text below: watch the computed hash immediately diverge from the on-chain fingerprint!</p>
+            <p class="text-sm text-slate-600">Type or edit ANY character in the text below: watch the computed hash
+              immediately diverge from the on-chain fingerprint!</p>
           </div>
-          <button onclick="injectMaliciousTamper()" class="px-4 py-2 text-xs sm:text-sm font-bold bg-red-600 hover:bg-red-700 text-white rounded-xl transition flex items-center gap-1.5 shadow-sm">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+          <button onclick="injectMaliciousTamper()"
+            class="px-4 py-2 text-xs sm:text-sm font-bold bg-red-600 hover:bg-red-700 text-white rounded-xl transition flex items-center gap-1.5 shadow-sm">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
             <span>Inject Test Tamper (Modify 1 Word)</span>
           </button>
         </div>
@@ -887,33 +1179,46 @@
               <span>Deliverable Content Under Inspection</span>
               <span class="text-xs font-mono text-[#047857]" id="live-char-count">0 chars</span>
             </div>
-            <textarea id="tamper-input" rows="8" oninput="recalculateTamperHash()" class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-xs sm:text-sm font-mono text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition leading-relaxed"></textarea>
+            <textarea id="tamper-input" rows="8" oninput="recalculateTamperHash()"
+              class="w-full bg-slate-50 border border-slate-300 rounded-xl p-4 text-xs sm:text-sm font-mono text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition leading-relaxed"></textarea>
           </div>
 
           <!-- Live Verification Verdict Card -->
           <div class="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col justify-between space-y-4">
             <div>
-              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Cryptographic Integrity Verdict</div>
-              <div id="tamper-verdict-box" class="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-center space-y-1 transition-all">
-                <div id="tamper-verdict-title" class="text-base sm:text-lg font-bold text-emerald-800 flex items-center justify-center gap-2">
-                  <svg class="w-5 h-5 fill-none stroke-currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+              <div class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Cryptographic Integrity
+                Verdict</div>
+              <div id="tamper-verdict-box"
+                class="p-4 rounded-xl bg-emerald-50 border border-emerald-300 text-center space-y-1 transition-all">
+                <div id="tamper-verdict-title"
+                  class="text-base sm:text-lg font-bold text-emerald-800 flex items-center justify-center gap-2">
+                  <svg class="w-5 h-5 fill-none stroke-currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
                   <span>AUTHENTIC & UNTAMPERED</span>
                 </div>
-                <p id="tamper-verdict-desc" class="text-xs sm:text-sm text-emerald-700 font-medium">Computed SHA-256 matches the on-chain permissioned ledger.</p>
+                <p id="tamper-verdict-desc" class="text-xs sm:text-sm text-emerald-700 font-medium">Computed SHA-256
+                  matches the on-chain permissioned ledger.</p>
               </div>
             </div>
 
             <div class="text-xs font-mono space-y-2 bg-white p-3.5 rounded-lg border border-slate-200 shadow-sm">
-              <div class="flex justify-between"><span class="text-slate-500">On-Chain Recorded Hash:</span> <code id="lbl-onchain-hash" class="text-[#047857] font-bold">Loading...</code></div>
-              <div class="flex justify-between"><span class="text-slate-500">Computed Hash:</span> <code id="lbl-computed-hash" class="text-emerald-700 font-bold">Loading...</code></div>
-              <div class="flex justify-between"><span class="text-slate-500">Signer Authority:</span> <span class="text-slate-800 font-bold">NTRO-NODE-ALPHA</span></div>
+              <div class="flex justify-between"><span class="text-slate-500">On-Chain Recorded Hash:</span> <code
+                  id="lbl-onchain-hash" class="text-[#047857] font-bold">Loading...</code></div>
+              <div class="flex justify-between"><span class="text-slate-500">Computed Hash:</span> <code
+                  id="lbl-computed-hash" class="text-emerald-700 font-bold">Loading...</code></div>
+              <div class="flex justify-between"><span class="text-slate-500">Signer Authority:</span> <span
+                  class="text-slate-800 font-bold">NTRO-NODE-ALPHA</span></div>
             </div>
 
             <div class="flex space-x-3 pt-1">
-              <button onclick="restoreAuthenticText()" class="w-1/2 py-2.5 bg-white hover:bg-slate-100 text-xs sm:text-sm font-bold rounded-xl text-slate-700 border border-slate-300 shadow-sm transition">
+              <button onclick="restoreAuthenticText()"
+                class="w-1/2 py-2.5 bg-white hover:bg-slate-100 text-xs sm:text-sm font-bold rounded-xl text-slate-700 border border-slate-300 shadow-sm transition">
                 Restore Authentic Text
               </button>
-              <button onclick="checkIntegrityManually()" class="w-1/2 py-2.5 bg-[#047857] hover:bg-[#065f46] text-xs sm:text-sm font-bold rounded-xl text-white shadow-sm transition">
+              <button onclick="checkIntegrityManually()"
+                class="w-1/2 py-2.5 bg-[#047857] hover:bg-[#065f46] text-xs sm:text-sm font-bold rounded-xl text-white shadow-sm transition">
                 Re-Verify Proof
               </button>
             </div>
@@ -927,7 +1232,7 @@
           <h3 class="text-base font-bold text-slate-900 uppercase tracking-wider">Chronological Permissioned Blocks</h3>
           <span class="text-xs text-slate-500 font-mono">Proof-of-Authority Consensus</span>
         </div>
-        
+
         <div class="overflow-x-auto">
           <table class="w-full text-left text-xs sm:text-sm font-mono border border-slate-200">
             <thead class="bg-slate-50 border-b border-slate-200 text-slate-600">
@@ -956,30 +1261,41 @@
   <!-- ======================================================== -->
   <div id="view-architecture" class="hidden flex-1 flex flex-col bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full space-y-6">
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
         <div>
           <h2 class="text-xl font-bold text-slate-900">Technical Architecture Document (2-Page Defense Standard)</h2>
           <p class="text-sm text-slate-600">NTRO PS ID: 26154 • Team Goated Tech • NIST CSF 2.0 & STIX 2.1 Aligned</p>
         </div>
-        <button onclick="window.print()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold rounded-xl border border-slate-300 transition flex items-center gap-2">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        <button onclick="window.print()"
+          class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-bold rounded-xl border border-slate-300 transition flex items-center gap-2">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
           <span>Print Document</span>
         </button>
       </div>
 
       <div class="bg-white border border-slate-200 rounded-2xl p-8 space-y-6 shadow-sm">
         <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-          <span class="text-xs font-mono text-[#047857] font-bold uppercase tracking-widest">PAGE 1 OF 2 // SYSTEM ARCHITECTURE & PIPELINE</span>
+          <span class="text-xs font-mono text-[#047857] font-bold uppercase tracking-widest">PAGE 1 OF 2 // SYSTEM
+            ARCHITECTURE & PIPELINE</span>
           <span class="text-xs text-slate-500 font-mono">GOVERNMENT EVALUATION RELEASE</span>
         </div>
         <div>
           <h3 class="text-xl font-bold text-slate-900 mb-2">1. System Overview & Core Objective</h3>
           <p class="text-sm text-slate-700 leading-relaxed">
-            The NTRO GenAI Content Transformation Platform is an intelligence synthesis compiler engineered for high-consequence national security operations. Modern agencies ingest heterogeneous, uncurated data across five modalities (raw text, multi-page PDF threat dossiers, intercepted acoustic communications, video telemetry, and live web intelligence). The core design principle is <strong>"Normalize Once → Route → Generate → Validate → Verify"</strong>, preventing data fragmentation and cognitive distortion.
+            The NTRO GenAI Content Transformation Platform is an intelligence synthesis compiler engineered for
+            high-consequence national security operations. Modern agencies ingest heterogeneous, uncurated data across
+            five modalities (raw text, multi-page PDF threat dossiers, intercepted acoustic communications, video
+            telemetry, and live web intelligence). The core design principle is <strong>"Normalize Once → Route →
+              Generate → Validate → Verify"</strong>, preventing data fragmentation and cognitive distortion.
           </p>
         </div>
         <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200">
-          <h4 class="text-xs font-bold text-[#047857] uppercase tracking-wider mb-3">Figure 1: End-to-End 8-Stage Processing Topology</h4>
+          <h4 class="text-xs font-bold text-[#047857] uppercase tracking-wider mb-3">Figure 1: End-to-End 8-Stage
+            Processing Topology</h4>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs font-mono">
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-[#047857] font-bold">1. Ingestion Engine</div>
@@ -987,33 +1303,40 @@
             </div>
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-[#047857] font-bold">2. Fact & Entity Extractor</div>
-              <p class="text-slate-600 mt-1">Extracts STIX 2.1 entities: CVEs, CVSS scores, IPv4/IPv6 C2 IOCs, threat actors.</p>
+              <p class="text-slate-600 mt-1">Extracts STIX 2.1 entities: CVEs, CVSS scores, IPv4/IPv6 C2 IOCs, threat
+                actors.</p>
             </div>
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-[#047857] font-bold">3. Grounded RAG Vector</div>
-              <p class="text-slate-600 mt-1">Dense semantic chunks with cosine ranking (Lewis et al.). Zero hallucination bounds.</p>
+              <p class="text-slate-600 mt-1">Dense semantic chunks with cosine ranking (Lewis et al.). Zero
+                hallucination bounds.</p>
             </div>
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-[#047857] font-bold">4. Semantic Router</div>
-              <p class="text-slate-600 mt-1">Routes parameters (Audience, Tone, Language, Detail) to specialized LLM agents.</p>
+              <p class="text-slate-600 mt-1">Routes parameters (Audience, Tone, Language, Detail) to specialized LLM
+                agents.</p>
             </div>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs font-mono mt-3">
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-emerald-700 font-bold">5. Multi-Agent Engine</div>
-              <p class="text-slate-600 mt-1">7 parallel agents generating Advisories, BLUF briefs, Videos, Social, Slides.</p>
+              <p class="text-slate-600 mt-1">7 parallel agents generating Advisories, BLUF briefs, Videos, Social,
+                Slides.</p>
             </div>
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-emerald-700 font-bold">6. Factuality Validator</div>
-              <p class="text-slate-600 mt-1">Reverse assertion verification against source embeddings. Flags &gt;0.5% drift.</p>
+              <p class="text-slate-600 mt-1">Reverse assertion verification against source embeddings. Flags &gt;0.5%
+                drift.</p>
             </div>
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-emerald-700 font-bold">7. SHA-256 Hashing</div>
-              <p class="text-slate-600 mt-1">Cryptographic fingerprinting. Full confidential content retained off-chain.</p>
+              <p class="text-slate-600 mt-1">Cryptographic fingerprinting. Full confidential content retained off-chain.
+              </p>
             </div>
             <div class="p-3 rounded-lg bg-white border border-slate-200">
               <div class="text-emerald-700 font-bold">8. Blockchain Ledger</div>
-              <p class="text-slate-600 mt-1">Mints PoA block with Merkle Root across NTRO, CERT-In, and Gateway nodes.</p>
+              <p class="text-slate-600 mt-1">Mints PoA block with Merkle Root across NTRO, CERT-In, and Gateway nodes.
+              </p>
             </div>
           </div>
         </div>
@@ -1023,59 +1346,81 @@
 
   <div id="view-demo" class="hidden flex-1 flex flex-col bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full space-y-6">
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
         <div>
           <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
             <span class="p-1 rounded-lg bg-emerald-100 text-[#047857]">🎥</span>
             <span>2-Minute Demonstration Video Walkthrough</span>
           </h2>
-          <p class="text-sm text-slate-600">Interactive simulation of the official 120-second evaluation presentation</p>
+          <p class="text-sm text-slate-600">Interactive simulation of the official 120-second evaluation presentation
+          </p>
         </div>
         <div class="flex items-center space-x-2 text-xs font-mono">
-          <span class="px-3 py-1 bg-slate-100 rounded-lg text-slate-800 border border-slate-200 font-bold">Duration: 02:00 Max</span>
-          <span class="px-3 py-1 bg-emerald-50 rounded-lg text-emerald-800 border border-emerald-200 font-bold">1080p 60fps</span>
+          <span class="px-3 py-1 bg-slate-100 rounded-lg text-slate-800 border border-slate-200 font-bold">Duration:
+            02:00 Max</span>
+          <span class="px-3 py-1 bg-emerald-50 rounded-lg text-emerald-800 border border-emerald-200 font-bold">1080p
+            60fps</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col shadow-xl">
-          <div class="relative aspect-video bg-gradient-to-br from-slate-950 via-slate-900 to-[#06241a] flex flex-col justify-between p-6 overflow-hidden select-none">
+        <div
+          class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col shadow-xl">
+          <div
+            class="relative aspect-video bg-gradient-to-br from-slate-950 via-slate-900 to-[#06241a] flex flex-col justify-between p-6 overflow-hidden select-none">
             <div class="flex items-center justify-between z-10">
-              <span class="text-xs font-mono font-bold text-red-400 bg-red-950/80 border border-red-800 px-2.5 py-0.5 rounded">DEMO BROADCAST</span>
+              <span
+                class="text-xs font-mono font-bold text-red-400 bg-red-950/80 border border-red-800 px-2.5 py-0.5 rounded">DEMO
+                BROADCAST</span>
               <span class="text-xs font-bold text-slate-400 font-mono">NTRO // SIH 2026</span>
             </div>
 
             <div id="video-stage-graphic" class="my-auto text-center space-y-3 z-10">
-              <div class="inline-flex p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-3xl mb-1">
+              <div
+                class="inline-flex p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-3xl mb-1">
                 🛡️
               </div>
               <h3 id="video-screen-title" class="text-2xl font-bold text-white">Scene 1: The Operational Challenge</h3>
               <p id="video-screen-caption" class="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
                 Raw multimodal intelligence flooding defense command centers creates severe communication delays.
               </p>
-              <div id="video-screen-tag" class="inline-block text-xs font-mono text-emerald-300 bg-emerald-950/80 border border-emerald-800 px-3 py-1 rounded-full">
+              <div id="video-screen-tag"
+                class="inline-block text-xs font-mono text-emerald-300 bg-emerald-950/80 border border-emerald-800 px-3 py-1 rounded-full">
                 Chapter 1/5: Operational Challenge [0:00 - 0:25]
               </div>
             </div>
 
-            <div class="bg-black/80 backdrop-blur-sm border border-slate-800 rounded-lg p-3 text-center text-sm font-medium text-amber-300 z-10">
+            <div
+              class="bg-black/80 backdrop-blur-sm border border-slate-800 rounded-lg p-3 text-center text-sm font-medium text-amber-300 z-10">
               <span class="text-slate-400 text-xs uppercase font-mono mr-1.5">[Narration]:</span>
-              <span id="video-cc-text">"In modern national security operations, manual intelligence transformation creates dangerous hours-long delays..."</span>
+              <span id="video-cc-text">"In modern national security operations, manual intelligence transformation
+                creates dangerous hours-long delays..."</span>
             </div>
           </div>
 
           <div class="bg-slate-950 p-4 space-y-3">
-            <div class="relative w-full h-2.5 bg-slate-800 rounded-full cursor-pointer overflow-hidden" onclick="seekVideo(event)">
+            <div class="relative w-full h-2.5 bg-slate-800 rounded-full cursor-pointer overflow-hidden"
+              onclick="seekVideo(event)">
               <div id="video-progress-bar" class="h-full bg-[#10b981] w-0 transition-all duration-100"></div>
             </div>
             <div class="flex items-center justify-between text-xs sm:text-sm font-mono text-slate-300">
               <div class="flex items-center space-x-3">
-                <button onclick="togglePlayVideo()" id="btn-video-play" class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white font-bold rounded-lg transition flex items-center gap-1.5">
-                  <svg id="icon-play" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
+                <button onclick="togglePlayVideo()" id="btn-video-play"
+                  class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white font-bold rounded-lg transition flex items-center gap-1.5">
+                  <svg id="icon-play" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                      clip-rule="evenodd" />
+                  </svg>
                   <span id="lbl-video-play">Play Demo</span>
                 </button>
-                <button onclick="restartVideo()" class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+                <button onclick="restartVideo()"
+                  class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
                 </button>
                 <span><span id="video-curr-time" class="text-white font-bold">00:00</span> / 02:00</span>
               </div>
@@ -1084,39 +1429,45 @@
           </div>
         </div>
 
-        <div class="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-5 space-y-3 flex flex-col justify-between shadow-sm">
+        <div
+          class="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-5 space-y-3 flex flex-col justify-between shadow-sm">
           <div>
             <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Synchronized Scenes</h3>
             <div class="space-y-2 text-xs sm:text-sm" id="chapter-list">
-              <div onclick="jumpChapter(0)" id="chap-0" class="p-3 rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-950 cursor-pointer transition">
+              <div onclick="jumpChapter(0)" id="chap-0"
+                class="p-3 rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-950 cursor-pointer transition">
                 <div class="font-bold flex items-center justify-between">
                   <span>1. Challenge & Mission</span>
                   <span class="font-mono text-xs">0:00 - 0:25</span>
                 </div>
                 <p class="text-xs text-slate-600 mt-1">Manual content bottleneck and intelligence risk.</p>
               </div>
-              <div onclick="jumpChapter(25)" id="chap-1" class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
+              <div onclick="jumpChapter(25)" id="chap-1"
+                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
                 <div class="font-bold flex items-center justify-between">
                   <span>2. Multimodal Ingestion</span>
                   <span class="font-mono text-xs">0:25 - 0:55</span>
                 </div>
                 <p class="text-xs text-slate-600 mt-1">PDFs, Word, Audio, Video, and parameter routing.</p>
               </div>
-              <div onclick="jumpChapter(55)" id="chap-2" class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
+              <div onclick="jumpChapter(55)" id="chap-2"
+                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
                 <div class="font-bold flex items-center justify-between">
                   <span>3. Concurrent Deliverables</span>
                   <span class="font-mono text-xs">0:55 - 1:25</span>
                 </div>
                 <p class="text-xs text-slate-600 mt-1">Advisories, Videos, Executive Briefs, Slides in 2.4s.</p>
               </div>
-              <div onclick="jumpChapter(85)" id="chap-3" class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
+              <div onclick="jumpChapter(85)" id="chap-3"
+                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
                 <div class="font-bold flex items-center justify-between">
                   <span>4. Blockchain Provenance</span>
                   <span class="font-mono text-xs">1:25 - 1:45</span>
                 </div>
                 <p class="text-xs text-slate-600 mt-1">SHA-256 minting and off-chain storage isolation.</p>
               </div>
-              <div onclick="jumpChapter(105)" id="chap-4" class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
+              <div onclick="jumpChapter(105)" id="chap-4"
+                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
                 <div class="font-bold flex items-center justify-between">
                   <span>5. Live Tamper Detection</span>
                   <span class="font-mono text-xs">1:45 - 2:00</span>
@@ -1132,7 +1483,8 @@
 
   <div id="view-presentation" class="hidden flex-1 flex flex-col bg-slate-50 py-8 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto w-full space-y-6">
-      <div class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
         <div>
           <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
             <span class="p-1 rounded-lg bg-emerald-100 text-[#047857]">📊</span>
@@ -1141,27 +1493,36 @@
           <p class="text-sm text-slate-600">Official 5-slide deck meeting Hackathon constraints with speaker notes</p>
         </div>
         <div class="flex items-center space-x-2 text-xs sm:text-sm font-mono">
-          <button onclick="prevSlide()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border border-slate-300 transition font-bold">
+          <button onclick="prevSlide()"
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border border-slate-300 transition font-bold">
             ← Previous
           </button>
-          <span class="px-4 py-2 bg-emerald-50 text-[#047857] rounded-xl border border-emerald-300 font-bold" id="slide-indicator">
+          <span class="px-4 py-2 bg-emerald-50 text-[#047857] rounded-xl border border-emerald-300 font-bold"
+            id="slide-indicator">
             Slide 1 of 5
           </span>
-          <button onclick="nextSlide()" class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white font-bold rounded-xl transition">
+          <button onclick="nextSlide()"
+            class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white font-bold rounded-xl transition">
             Next →
           </button>
-          <button onclick="toggleSpeakerNotes()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border border-slate-300 transition font-bold">
+          <button onclick="toggleSpeakerNotes()"
+            class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded-xl border border-slate-300 transition font-bold">
             Toggle Notes
           </button>
         </div>
       </div>
 
-      <div class="bg-white border border-slate-200 rounded-2xl p-10 min-h-[460px] flex flex-col justify-between shadow-sm relative overflow-hidden" id="slide-container"></div>
+      <div
+        class="bg-white border border-slate-200 rounded-2xl p-10 min-h-[460px] flex flex-col justify-between shadow-sm relative overflow-hidden"
+        id="slide-container"></div>
 
       <div id="speaker-notes-panel" class="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-2">
         <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-slate-600">
           <span class="flex items-center gap-2 text-[#047857]">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z"/></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 100-6 3 3 0 000 6z" />
+            </svg>
             <span>Official Presentation Speaker Script</span>
           </span>
           <span class="font-mono text-slate-500">Speaking Time: ~20s per slide</span>
@@ -1239,12 +1600,12 @@
     // Main View Switching (Home, Services, Login, Blockchain, Architecture, Demo, Presentation)
     function switchMainView(viewId) {
       state.activeView = viewId;
-      
+
       const views = ['home', 'services', 'login', 'blockchain', 'architecture', 'demo', 'presentation'];
       views.forEach(v => {
         const el = document.getElementById(`view-${v}`);
         if (el) el.classList.add('hidden');
-        
+
         const navBtn = document.getElementById(`nav-${v}`);
         if (navBtn) {
           if (v === viewId) {
@@ -1433,7 +1794,7 @@
       const file = e.target.files[0];
       if (!file) return;
       const statusEl = document.getElementById('file-upload-status');
-      statusEl.innerText = `Parsing ${file.name} (${(file.size/1024).toFixed(1)} KB)...`;
+      statusEl.innerText = `Parsing ${file.name} (${(file.size / 1024).toFixed(1)} KB)...`;
 
       if (file.name.toLowerCase().endsWith('.pdf') || file.type === 'application/pdf') {
         if (typeof pdfjsLib !== 'undefined') {
@@ -1523,7 +1884,7 @@
               btn.disabled = false;
               return;
             }
-          } catch (e) {}
+          } catch (e) { }
         }
         statusEl.innerText = `Direct web request blocked by CORS. Please paste text directly into the box.`;
       } finally {
@@ -1535,7 +1896,7 @@
       const file = e.target.files[0];
       if (!file) return;
       const reader = new FileReader();
-      reader.onload = function(event) {
+      reader.onload = function (event) {
         const dataUrl = event.target.result;
         state.uploadedImageBase64 = dataUrl.split(',')[1];
         state.uploadedImageMime = file.type || 'image/png';
@@ -1544,7 +1905,7 @@
         previewImg.src = dataUrl;
         document.getElementById('image-preview-container').classList.remove('hidden');
         document.getElementById('image-meta-name').innerText = file.name;
-        document.getElementById('image-meta-details').innerText = `${(file.size/1024).toFixed(1)} KB • ${file.type}`;
+        document.getElementById('image-meta-details').innerText = `${(file.size / 1024).toFixed(1)} KB • ${file.type}`;
         runOcrExtraction();
       };
       reader.readAsDataURL(file);
@@ -1567,7 +1928,7 @@
             btn.innerText = "Extract Text via OCR";
             return;
           }
-        } catch (e) {}
+        } catch (e) { }
       }
 
       document.getElementById('source-input').value = `[IMAGE MULTIMODAL INGESTION]
@@ -1587,7 +1948,7 @@ EXTRACTED VISUAL CONTEXT: Document diagram or screenshot scanned. Ready for tran
       videoEl.src = url;
       document.getElementById('video-preview-container').classList.remove('hidden');
       document.getElementById('video-meta-filename').innerText = file.name;
-      document.getElementById('video-meta-specs').innerText = `${(file.size / (1024*1024)).toFixed(1)} MB • ${file.type || 'video/mp4'}`;
+      document.getElementById('video-meta-specs').innerText = `${(file.size / (1024 * 1024)).toFixed(1)} MB • ${file.type || 'video/mp4'}`;
       extractVideoTranscript();
     }
 
@@ -1781,7 +2142,7 @@ ${sentences[1] || 'Multiple indicators point towards structured implementation r
 This deliverable was generated via NTRO's Source-Grounded AI Engine and anchored to our permissioned blockchain ledger for tamper-evident verification.`;
       } else if (outputType === 'advisory') {
         return `# Official Technical Advisory: ${title}
-**Tracking ID:** NTRO-ADV-${new Date().getFullYear()}-${Math.floor(1000 + Math.random()*9000)}  
+**Tracking ID:** NTRO-ADV-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}  
 **Classification:** Official Release | **Date:** ${new Date().toUTCString()}  
 
 ### 1. Overview & Objective
@@ -1865,7 +2226,7 @@ ${coreClaims}
     function renderOutputTabs(activeTypes, currentActive) {
       const container = document.getElementById('output-tabs-container');
       container.innerHTML = '';
-      
+
       const labels = {
         advisory: '🛡️ Advisory',
         executive: '📑 Executive',
@@ -1886,7 +2247,7 @@ ${coreClaims}
         btn.id = `btn-tab-${t}`;
         btn.onclick = () => showArtefact(t);
         const isActive = (t === currentActive);
-        btn.className = isActive 
+        btn.className = isActive
           ? "output-tab-btn px-4 py-2 text-xs sm:text-sm rounded-lg bg-[#047857] text-white font-bold whitespace-nowrap shadow-sm"
           : "output-tab-btn px-4 py-2 text-xs sm:text-sm rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 whitespace-nowrap transition";
         btn.innerText = labels[t] || t;
@@ -2094,7 +2455,7 @@ ${coreClaims}
           team: "Goated Tech",
           operator_role: state.currentRole,
           timestamp: new Date().toISOString(),
-          blockchain_height: state.blockchain.length ? state.blockchain[state.blockchain.length-1].height : 845
+          blockchain_height: state.blockchain.length ? state.blockchain[state.blockchain.length - 1].height : 845
         },
         source: {
           content: document.getElementById('source-input').value,
@@ -2106,7 +2467,7 @@ ${coreClaims}
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `NTRO_VERIFIED_PACKAGE_BLOCK_${state.blockchain.length ? state.blockchain[state.blockchain.length-1].height : 845}.json`;
+      a.download = `NTRO_VERIFIED_PACKAGE_BLOCK_${state.blockchain.length ? state.blockchain[state.blockchain.length - 1].height : 845}.json`;
       a.click();
       URL.revokeObjectURL(url);
     }
@@ -2214,7 +2575,7 @@ ${coreClaims}
           }
         });
 
-        const filename = `NTRO_Presentation_Deck_${new Date().toISOString().slice(0,10)}.pptx`;
+        const filename = `NTRO_Presentation_Deck_${new Date().toISOString().slice(0, 10)}.pptx`;
         pptx.writeFile({ fileName: filename });
         alert(`✅ Presentation exported as '${filename}'!`);
       } catch (err) {
@@ -2227,7 +2588,7 @@ ${coreClaims}
     async function loadArtefactIntoTamperBox() {
       const artefact = state.generatedArtefacts[state.currentArtefact];
       const currentText = artefact ? artefact.content : (document.getElementById('artefact-body').innerText || "NTRO Operational Directive");
-      
+
       document.getElementById('tamper-input').value = currentText;
       state.originalCurrentHash = await sha256(currentText);
       document.getElementById('lbl-onchain-hash').innerText = state.originalCurrentHash.substring(0, 24) + "...";
@@ -2243,7 +2604,7 @@ ${coreClaims}
       const box = document.getElementById('tamper-verdict-box');
       const title = document.getElementById('tamper-verdict-title');
       const desc = document.getElementById('tamper-verdict-desc');
-      
+
       const statCounter = document.getElementById('stat-tamper-state');
       const statSub = document.getElementById('stat-tamper-sub');
       const cardCounter = document.getElementById('card-breach-counter');
@@ -2531,5 +2892,92 @@ ${coreClaims}
       renderBlockchainTable();
     };
   </script>
+  <!-- Firebase Authentication Module -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import {
+      getAuth,
+      signInWithPopup,
+      GoogleAuthProvider,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Your Firebase configuration (Safe for public client-side)
+    const firebaseConfig = {
+      apiKey: "AIzaSyAGPjfpuVDP2q6ieYyDKTqUFwt6KskwPzI",
+      authDomain: "ai-secumate.firebaseapp.com",
+      projectId: "ai-secumate",
+      storageBucket: "ai-secumate.firebasestorage.app",
+      messagingSenderId: "231873432976",
+      appId: "1:231873432976:web:97284517188a8f19caf715",
+      measurementId: "G-MC7T73H964"
+    };
+
+    // Initialize Firebase & Auth
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    // Attach Firebase handlers to window so our UI buttons can call them
+    window.firebaseAuth = {
+      // 1. Google Sign-In
+      signInWithGoogle: async () => {
+        try {
+          const result = await signInWithPopup(auth, provider);
+          const user = result.user;
+          // Determine role based on email or default to operator
+          let role = 'operator';
+          if (user.email.includes('cmd') || user.email.includes('commander')) role = 'commander';
+          else if (user.email.includes('audit') || user.email.includes('cert')) role = 'auditor';
+
+          handlePostLogin(user.email, user.displayName || user.email.split('@')[0], role);
+        } catch (error) {
+          alert("Google Sign-In Error: " + error.message);
+        }
+      },
+
+      // 2. Email & Password Sign-In
+      signInWithEmail: async (email, password) => {
+        try {
+          const result = await signInWithEmailAndPassword(auth, email, password);
+          const storedRole = localStorage.getItem('role_' + result.user.uid) || 'operator';
+          handlePostLogin(result.user.email, result.user.email.split('@')[0], storedRole);
+        } catch (error) {
+          alert("Login Failed: " + error.message);
+        }
+      },
+
+      // 3. Email & Password Sign-Up
+      signUpWithEmail: async (email, password, role) => {
+        try {
+          const result = await createUserWithEmailAndPassword(auth, email, password);
+          localStorage.setItem('role_' + result.user.uid, role);
+          handlePostLogin(result.user.email, result.user.email.split('@')[0], role);
+          alert("Account registered successfully as " + role.toUpperCase());
+        } catch (error) {
+          alert("Sign Up Failed: " + error.message);
+        }
+      },
+
+      // 4. Logout
+      signOutUser: async () => {
+        await signOut(auth);
+        logoutToLogin();
+      }
+    };
+
+    // Listen to Auth State changes across refreshes
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const storedRole = localStorage.getItem('role_' + user.uid) || 'operator';
+        handlePostLogin(user.email, user.displayName || user.email.split('@')[0], storedRole);
+      }
+    });
+  </script>
+
 </body>
+
 </html>

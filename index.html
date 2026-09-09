@@ -2032,7 +2032,7 @@ ${sourceText}`;
         console.warn("API call failed:", err);
       }
       return null;
-
+      } 
     // Dynamic Local Synthesis Engine (Zero-Key Offline Fallback)
     function synthesizeCustomDeliverableLocally(outputType, sourceText, params) {
       const lines = sourceText.split('\n').map(l => l.trim()).filter(l => l.length > 0);

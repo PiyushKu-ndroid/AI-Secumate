@@ -1279,123 +1279,18 @@
         <div class="flex items-center space-x-2 text-xs font-mono">
           <span class="px-3 py-1 bg-slate-100 rounded-lg text-slate-800 border border-slate-200 font-bold">Duration:
             02:00 Max</span>
-          <span class="px-3 py-1 bg-emerald-50 rounded-lg text-emerald-800 border border-emerald-200 font-bold">1080p
-            60fps</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div
-          class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden flex flex-col shadow-xl">
-          <div
-            class="relative aspect-video bg-gradient-to-br from-slate-950 via-slate-900 to-[#06241a] flex flex-col justify-between p-6 overflow-hidden select-none">
-            <div class="flex items-center justify-between z-10">
-              <span
-                class="text-xs font-mono font-bold text-red-400 bg-red-950/80 border border-red-800 px-2.5 py-0.5 rounded">DEMO
-                BROADCAST</span>
-              <span class="text-xs font-bold text-slate-400 font-mono">NTRO // SIH 2026</span>
-            </div>
-
-            <div id="video-stage-graphic" class="my-auto text-center space-y-3 z-10">
-              <div
-                class="inline-flex p-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-3xl mb-1">
-                🛡️
-              </div>
-              <h3 id="video-screen-title" class="text-2xl font-bold text-white">Scene 1: The Operational Challenge</h3>
-              <p id="video-screen-caption" class="text-sm text-slate-300 max-w-lg mx-auto leading-relaxed">
-                Raw multimodal intelligence flooding defense command centers creates severe communication delays.
-              </p>
-              <div id="video-screen-tag"
-                class="inline-block text-xs font-mono text-emerald-300 bg-emerald-950/80 border border-emerald-800 px-3 py-1 rounded-full">
-                Chapter 1/5: Operational Challenge [0:00 - 0:25]
-              </div>
-            </div>
-
-            <div
-              class="bg-black/80 backdrop-blur-sm border border-slate-800 rounded-lg p-3 text-center text-sm font-medium text-amber-300 z-10">
-              <span class="text-slate-400 text-xs uppercase font-mono mr-1.5">[Narration]:</span>
-              <span id="video-cc-text">"In modern national security operations, manual intelligence transformation
-                creates dangerous hours-long delays..."</span>
-            </div>
-          </div>
-
-          <div class="bg-slate-950 p-4 space-y-3">
-            <div class="relative w-full h-2.5 bg-slate-800 rounded-full cursor-pointer overflow-hidden"
-              onclick="seekVideo(event)">
-              <div id="video-progress-bar" class="h-full bg-[#10b981] w-0 transition-all duration-100"></div>
-            </div>
-            <div class="flex items-center justify-between text-xs sm:text-sm font-mono text-slate-300">
-              <div class="flex items-center space-x-3">
-                <button onclick="togglePlayVideo()" id="btn-video-play"
-                  class="px-4 py-2 bg-[#047857] hover:bg-[#065f46] text-white font-bold rounded-lg transition flex items-center gap-1.5">
-                  <svg id="icon-play" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                      clip-rule="evenodd" />
-                  </svg>
-                  <span id="lbl-video-play">Play Demo</span>
-                </button>
-                <button onclick="restartVideo()"
-                  class="p-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg transition">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                  </svg>
-                </button>
-                <span><span id="video-curr-time" class="text-white font-bold">00:00</span> / 02:00</span>
-              </div>
-              <div class="text-emerald-400 font-semibold">Narrator: Active</div>
-            </div>
-          </div>
+        <!-- REAL DEMO VIDEO PLAYER -->
+        <div class="lg:col-span-8 bg-black rounded-2xl overflow-hidden shadow-xl border border-slate-800 flex items-center justify-center">
+          <video controls preload="metadata" class="w-full aspect-video rounded-2xl bg-black">
+            <source src="demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
         </div>
 
-        <div
-          class="lg:col-span-4 bg-white border border-slate-200 rounded-2xl p-5 space-y-3 flex flex-col justify-between shadow-sm">
-          <div>
-            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Synchronized Scenes</h3>
-            <div class="space-y-2 text-xs sm:text-sm" id="chapter-list">
-              <div onclick="jumpChapter(0)" id="chap-0"
-                class="p-3 rounded-lg border border-emerald-300 bg-emerald-50 text-emerald-950 cursor-pointer transition">
-                <div class="font-bold flex items-center justify-between">
-                  <span>1. Challenge & Mission</span>
-                  <span class="font-mono text-xs">0:00 - 0:25</span>
-                </div>
-                <p class="text-xs text-slate-600 mt-1">Manual content bottleneck and intelligence risk.</p>
-              </div>
-              <div onclick="jumpChapter(25)" id="chap-1"
-                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
-                <div class="font-bold flex items-center justify-between">
-                  <span>2. Multimodal Ingestion</span>
-                  <span class="font-mono text-xs">0:25 - 0:55</span>
-                </div>
-                <p class="text-xs text-slate-600 mt-1">PDFs, Word, Audio, Video, and parameter routing.</p>
-              </div>
-              <div onclick="jumpChapter(55)" id="chap-2"
-                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
-                <div class="font-bold flex items-center justify-between">
-                  <span>3. Concurrent Deliverables</span>
-                  <span class="font-mono text-xs">0:55 - 1:25</span>
-                </div>
-                <p class="text-xs text-slate-600 mt-1">Advisories, Videos, Executive Briefs, Slides in 2.4s.</p>
-              </div>
-              <div onclick="jumpChapter(85)" id="chap-3"
-                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
-                <div class="font-bold flex items-center justify-between">
-                  <span>4. Blockchain Provenance</span>
-                  <span class="font-mono text-xs">1:25 - 1:45</span>
-                </div>
-                <p class="text-xs text-slate-600 mt-1">SHA-256 minting and off-chain storage isolation.</p>
-              </div>
-              <div onclick="jumpChapter(105)" id="chap-4"
-                class="p-3 rounded-lg border border-slate-200 bg-slate-50 text-slate-700 cursor-pointer hover:bg-slate-100 transition">
-                <div class="font-bold flex items-center justify-between">
-                  <span>5. Live Tamper Detection</span>
-                  <span class="font-mono text-xs">1:45 - 2:00</span>
-                </div>
-                <p class="text-xs text-slate-600 mt-1">Instant breach alert upon single-character modification.</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

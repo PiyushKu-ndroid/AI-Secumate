@@ -646,12 +646,6 @@
               <div id="video-preview-container"
                 class="hidden p-3 rounded-lg bg-white border border-slate-200 space-y-2">
                 <video id="video-player-element" controls class="w-full max-h-36 rounded-lg bg-black"></video>
-                <!-- FIX: Added missing video meta elements that JS references -->
-                <div class="flex items-center gap-2 text-xs text-slate-600 pt-1">
-                  <span class="font-semibold" id="video-meta-filename">video.mp4</span>
-                  <span class="text-slate-400">•</span>
-                  <span id="video-meta-specs" class="font-mono text-slate-500">0 MB</span>
-                </div>
                 <button onclick="extractVideoTranscript()" id="btn-extract-video-audio"
                   class="px-3 py-1 bg-[#047857] hover:bg-[#065f46] text-white text-xs font-bold rounded shadow-sm transition">
                   Extract Video Speech Transcript
@@ -1896,7 +1890,7 @@
       reader.onload = function (event) {
         const dataUrl = event.target.result;
         // 1. Store the image Base64 and MIME type
-        state.uploadedImageBase64 = dataUrl.split(',')[1]; // FIX: get base64 string, not array
+        state.uploadedImageBase64 = dataUrl.split(',');
         state.uploadedImageMime = file.type || 'image/png';
 
         // 2. Show the image preview on screen
@@ -1948,8 +1942,10 @@ ENGINE: OpenAI Whisper Large-v3 Speech-to-Text Pipeline (Confidence: 99.2%)
       });
     }
 
-    // Live Gemini API Call (via Vercel /api/transform proxy)
+    // Live Gemini API Call
     async function callLiveGemini(outputType, sourceText, params) {
+      // if (!state.geminiApiKey) return null;
+
       let formatDirective = "";
       if (outputType === 'executive') {
         formatDirective = "OUTPUT STRICTLY AS AN EXECUTIVE BRIEFING. Include: 1. Executive Summary & BLUF (Bottom Line Up Front), 2. Strategic Context, 3. Key Observations, 4. Recommended Action Directives. DO NOT OUTPUT A VIDEO SCRIPT.";
@@ -1967,13 +1963,28 @@ ENGINE: OpenAI Whisper Large-v3 Speech-to-Text Pipeline (Confidence: 99.2%)
         formatDirective = "OUTPUT STRICTLY AS 5 SLIDES. Format each slide clearly with Slide Title, Bullet Points, and Speaker Notes.";
       }
 
-      const systemPrompt = `You are the NTRO GenAI Content Transformation Engine.\nTransform the provided source content into the requested deliverable: ${outputType.toUpperCase()}.\nTarget Audience: ${params.audience}\nTone of Voice: ${params.tone}\nLanguage: ${params.language}\nDetail Level: ${params.detail}\nPrimary Goal: ${params.objective}\nDocument Style: ${params.style}\n\nFORMAT RULE:\n${formatDirective}\n\nSTRICT GROUNDING:\nBase all assertions strictly on the source content provided. Adapt appropriately to the target audience and tone.\n\nSOURCE CONTENT:\n${sourceText}`;
+      const systemPrompt = `You are the NTRO GenAI Content Transformation Engine.
+Transform the provided source content into the requested deliverable: ${outputType.toUpperCase()}.
+Target Audience: ${params.audience}
+Tone of Voice: ${params.tone}
+Language: ${params.language}
+Detail Level: ${params.detail}
+Primary Goal: ${params.objective}
+Document Style: ${params.style}
+
+FORMAT RULE:
+${formatDirective}
+
+STRICT GROUNDING:
+Base all assertions strictly on the source content provided. Adapt appropriately to the target audience and tone.
+
+SOURCE CONTENT:
+${sourceText}`;
 
       try {
         // Calls your secure Vercel backend proxy
         const payload = {
           prompt: systemPrompt,
-          // FIX: imageBase64 is now a proper base64 string (not array) — correctly passed to Gemini vision
           imageBase64: (state.currentIngestMode === 'image' && state.uploadedImageBase64) ? state.uploadedImageBase64 : null,
           imageMime: state.uploadedImageMime || 'image/png'
         };
@@ -1990,7 +2001,7 @@ ENGINE: OpenAI Whisper Large-v3 Speech-to-Text Pipeline (Confidence: 99.2%)
             return data.text;
           }
         } else {
-          const err = await response.json().catch(() => ({}));
+          const err = await response.json();
           console.warn("Serverless API error:", err);
         }
       } catch (err) {
@@ -2274,8 +2285,9 @@ ${coreClaims}
 
       for (const t of selectedTypes) {
         let content = null;
-        // FIX: Always call the API — key lives in Vercel env vars, not the frontend
-        content = await callLiveGemini(t, sourceText, params);
+        if (state.geminiApiKey) {
+          content = await callLiveGemini(t, sourceText, params);
+        }
         if (!content) {
           content = synthesizeCustomDeliverableLocally(t, sourceText, params);
         }

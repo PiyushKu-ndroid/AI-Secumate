@@ -1928,15 +1928,85 @@ Visual diagram or document uploaded. The image will be processed natively by Gem
       extractVideoTranscript();
     }
 
-    function extractVideoTranscript() {
-      const filename = document.getElementById('video-meta-filename').innerText || "video.mp4";
-      document.getElementById('source-input').value = `[VIDEO INGESTION & WHISPER SPEECH TRANSCRIPT]
-VIDEO FILE: ${filename}
-ENGINE: OpenAI Whisper Large-v3 Speech-to-Text Pipeline (Confidence: 99.2%)
+    async function extractVideoTranscript() {
+      const filename = document.getElementById('video-meta-filename').innerText || 'video.mp4';
+      const videoEl = document.getElementById('video-player-element');
+      const btn = document.getElementById('btn-extract-video-audio');
+      const sourceBox = document.getElementById('source-input');
 
-[00:00 - 00:15] "Recording initialized. Transforming operational speech track into structured communication artefacts."
-[00:15 - 00:35] "Analyzing primary statements and context to formulate clear deliverables across executive and public channels."
-[00:35 - 00:55] "Deploying verified directives and authenticating output on the permissioned blockchain ledger."`;
+      if (!state.uploadedVideoUrl) {
+        alert('Please upload a video file first.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerText = '🎙️ Transcribing via Groq Whisper...';
+
+      try {
+        // Fetch the video blob from the object URL
+        const blob = await fetch(state.uploadedVideoUrl).then(r => r.blob());
+
+        // Check size — Groq Whisper limit is 25MB
+        if (blob.size > 25 * 1024 * 1024) {
+          sourceBox.value = `[VIDEO TOO LARGE FOR TRANSCRIPTION]\nFile: ${filename}\nSize: ${(blob.size / (1024*1024)).toFixed(1)} MB\n\nGroq Whisper limit is 25MB. Please trim the video or describe its content manually below.`;
+          onSourceInputChange();
+          btn.disabled = false;
+          btn.innerText = 'Extract Video Speech Transcript';
+          return;
+        }
+
+        // Convert blob to base64
+        const base64 = await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result.split(',')[1]);
+          reader.onerror = reject;
+          reader.readAsDataURL(blob);
+        });
+
+        // Call Groq Whisper via Vercel serverless function
+        const response = await fetch('/api/transcribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            audioBase64: base64,
+            mimeType: blob.type || 'video/mp4',
+            filename: filename
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.transcript) {
+          sourceBox.value = `[VIDEO INGESTION — GROQ WHISPER LARGE-V3 TRANSCRIPT]\nVIDEO FILE: ${filename}\nENGINE: Groq Whisper Large-v3 (Real Speech-to-Text)\n\n${data.transcript}`;
+        } else {
+          // Fallback to metadata prompt if Groq fails
+          const dur = videoEl.duration ? formatTS(videoEl.duration) : 'unknown';
+          sourceBox.value = `[VIDEO INGESTION — METADATA ANALYSIS]\nVIDEO FILE: ${filename}\nDURATION: ${dur}\nNOTE: Whisper transcription failed (${data.error || 'unknown error'}). Generating artefacts from video metadata.\n\nThis video has been ingested by NTRO AI-Secumate for automated content transformation.`;
+        }
+      } catch (err) {
+        const dur = videoEl.duration ? formatTS(videoEl.duration) : 'unknown';
+        sourceBox.value = `[VIDEO INGESTION — METADATA ANALYSIS]\nVIDEO FILE: ${filename}\nDURATION: ${dur}\nNOTE: Transcription unavailable (${err.message}). Please describe the video content below for transformation.`;
+      }
+
+      onSourceInputChange();
+      btn.disabled = false;
+      btn.innerText = 'Extract Video Speech Transcript';
+    }
+
+    function formatTS(secs) {
+      const m = Math.floor(secs / 60).toString().padStart(2, '0');
+      const s = Math.floor(secs % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function buildVideoMetaPrompt(filename, videoEl) {
+      const dur = videoEl.duration ? formatTS(videoEl.duration) : 'unknown';
+      const specs = document.getElementById('video-meta-specs').innerText || '';
+      document.getElementById('source-input').value =
+`[VIDEO INGESTION — METADATA ANALYSIS]
+VIDEO FILE: ${filename}
+DURATION: ${dur} | ${specs}
+NOTE: Real-time speech extraction was unavailable in this browser. Gemini will analyse this video context from its filename and metadata.`;
       onSourceInputChange();
     }
 

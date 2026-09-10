@@ -181,29 +181,11 @@
 
         <!-- Left: Pixel Matrix Logo & Title -->
         <div onclick="switchMainView('home')" class="flex items-center space-x-3 cursor-pointer group select-none">
-          <!-- Green Dot-Matrix Pixel Cluster Icon -->
-          <div class="h-10 w-10 flex items-center justify-center">
-            <svg class="h-8 w-8 text-[#34d399] transition-transform group-hover:scale-110" viewBox="0 0 24 24"
-              fill="currentColor">
-              <rect x="10" y="2" width="4" height="4" rx="1" />
-              <rect x="6" y="6" width="4" height="4" rx="1" />
-              <rect x="10" y="6" width="4" height="4" rx="1" />
-              <rect x="14" y="6" width="4" height="4" rx="1" />
-              <rect x="2" y="10" width="4" height="4" rx="1" />
-              <rect x="6" y="10" width="4" height="4" rx="1" />
-              <rect x="10" y="10" width="4" height="4" rx="1" />
-              <rect x="14" y="10" width="4" height="4" rx="1" />
-              <rect x="18" y="10" width="4" height="4" rx="1" />
-              <rect x="6" y="14" width="4" height="4" rx="1" />
-              <rect x="10" y="14" width="4" height="4" rx="1" />
-              <rect x="14" y="14" width="4" height="4" rx="1" />
-              <rect x="10" y="18" width="4" height="4" rx="1" />
-            </svg>
-          </div>
+
           <div>
             <div class="flex items-center space-x-2">
-              <span class="font-extrabold text-2xl tracking-tight text-white font-display">Generative<span
-                  class="text-[#34d399]">AI.net</span></span>
+              <span class="font-extrabold text-2xl tracking-tight text-white font-display">AI-<span
+                  class="text-[#34d399]">Secumate</span></span>
               <span
                 class="hidden md:inline-block px-2 py-0.5 text-xs font-bold bg-[#047857] text-white rounded-full">NTRO
                 Core</span>
@@ -299,18 +281,18 @@
       class="bg-[#e6f4ea] py-16 sm:py-24 px-4 sm:px-6 lg:px-8 border-b border-emerald-100 text-center relative overflow-hidden">
       <div class="max-w-5xl mx-auto space-y-6">
         <h1 class="text-4xl sm:text-6xl font-extrabold text-[#052e16] tracking-tight leading-tight font-display">
-          Less than 1% of organizations truly benefit from AI.
+          Autonomous Intelligence Transformation for National Security.
         </h1>
 
         <p class="text-lg sm:text-2xl font-bold text-[#064e3b] max-w-3xl mx-auto leading-relaxed">
-          Most AI projects fail to deliver ROI, stuck in endless pilots.<br class="hidden sm:inline">
-          We build and implement defense-grade AI engines that drive real mission outcomes. Fast.
+          Transform raw multimodal intelligence—dossiers, audio, video, and web feeds—into 7 verified, audience-tailored
+          deliverables in under 60 seconds.
         </p>
 
         <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <button onclick="switchMainView('services')"
             class="px-8 py-4 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-sm sm:text-base rounded-xl shadow-lg hover:shadow-xl transition-all uppercase tracking-wider flex items-center gap-2">
-            <span>GET OUR 60-SEC TRANSFORMATION</span>
+            <span>LAUNCH TRANSFORMATION STUDIO</span>
             <svg class="w-5 h-5 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
             </svg>
@@ -982,10 +964,11 @@
   <!-- ======================================================== -->
   <!-- 4. LOGIN PAGE (FIREBASE GOOGLE + EMAIL AUTHENTICATION)   -->
   <!-- ======================================================== -->
-<!-- 4. LOGIN PAGE (AUTHENTIC GOOGLE & EMAIL SSO) -->
-  <div id="view-login" class="hidden flex-1 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+  <!-- 4. LOGIN PAGE (AUTHENTIC GOOGLE & EMAIL SSO) -->
+  <div id="view-login"
+    class="hidden flex-1 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
     <div class="max-w-md w-full space-y-6 bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-slate-200">
-      
+
       <div class="text-center space-y-2">
         <h2 class="text-2xl font-extrabold text-[#052e16] font-display">Portal Sign-On (SSO)</h2>
         <p class="text-xs text-slate-600">Sign in via Google or Official Email.</p>
@@ -993,12 +976,17 @@
 
       <!-- Google Sign-In -->
       <div>
-        <button onclick="window.firebaseAuth.signInWithGoogle()" class="w-full py-3 px-4 border border-slate-300 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm shadow-sm transition flex items-center justify-center gap-3">
+        <button onclick="window.firebaseAuth.signInWithGoogle()"
+          class="w-full py-3 px-4 border border-slate-300 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm shadow-sm transition flex items-center justify-center gap-3">
           <svg class="w-5 h-5" viewBox="0 0 24 24">
-            <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z"/>
-            <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z"/>
-            <path fill="#FBBC05" d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.8 0 12s.7 3.3 1.9 5.7l3.7-2.9z"/>
-            <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16C3.7 19.7 7.5 23 12 23z"/>
+            <path fill="#EA4335"
+              d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.3l3.7 2.9C6.5 7.3 9 5 12 5z" />
+            <path fill="#4285F4"
+              d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z" />
+            <path fill="#FBBC05"
+              d="M5.6 14.8c-.2-.7-.4-1.5-.4-2.8s.2-2.1.4-2.8L1.9 6.3C.7 8.7 0 10.8 0 12s.7 3.3 1.9 5.7l3.7-2.9z" />
+            <path fill="#34A853"
+              d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3 0-5.5-2.3-6.4-5.2L1.9 16C3.7 19.7 7.5 23 12 23z" />
           </svg>
           <span>Continue with Google</span>
         </button>
@@ -1006,20 +994,24 @@
 
       <div class="relative flex items-center justify-center">
         <div class="border-t border-slate-200 w-full"></div>
-        <span class="bg-white px-3 text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">or with email</span>
+        <span class="bg-white px-3 text-[11px] font-bold text-slate-400 uppercase font-mono tracking-wider">or with
+          email</span>
       </div>
 
       <!-- Email Sign-In -->
       <div class="space-y-3">
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Email Address</label>
-          <input type="email" id="input-signin-email" placeholder="name@domain.com" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+          <input type="email" id="input-signin-email" placeholder="name@domain.com"
+            class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
         </div>
         <div>
           <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
-          <input type="password" id="input-signin-password" placeholder="••••••••" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
+          <input type="password" id="input-signin-password" placeholder="••••••••"
+            class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-xs text-slate-900 focus:bg-white focus:ring-2 focus:ring-emerald-500 outline-none">
         </div>
-        <button onclick="submitFirebaseSignIn()" class="w-full py-3 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-xs rounded-xl shadow-md transition uppercase tracking-wider">
+        <button onclick="submitFirebaseSignIn()"
+          class="w-full py-3 bg-[#047857] hover:bg-[#065f46] text-white font-extrabold text-xs rounded-xl shadow-md transition uppercase tracking-wider">
           Sign In to Portal
         </button>
       </div>
@@ -1893,48 +1885,28 @@
     function handleImageUpload(e) {
       const file = e.target.files[0];
       if (!file) return;
+
       const reader = new FileReader();
       reader.onload = function (event) {
         const dataUrl = event.target.result;
-        state.uploadedImageBase64 = dataUrl.split(',')[1];
+        // 1. Store the image Base64 and MIME type
+        state.uploadedImageBase64 = dataUrl.split(',');
         state.uploadedImageMime = file.type || 'image/png';
 
+        // 2. Show the image preview on screen
         const previewImg = document.getElementById('image-preview-element');
         previewImg.src = dataUrl;
         document.getElementById('image-preview-container').classList.remove('hidden');
         document.getElementById('image-meta-name').innerText = file.name;
         document.getElementById('image-meta-details').innerText = `${(file.size / 1024).toFixed(1)} KB • ${file.type}`;
-        runOcrExtraction();
+
+        // 3. Put a clear indicator in the source box so it's ready for transformation
+        document.getElementById('source-input').value = `[IMAGE MULTIMODAL INGESTION: ${file.name}]
+Visual diagram or document uploaded. The image will be processed natively by Gemini's Multimodal Vision Engine.`;
+
+        onSourceInputChange();
       };
       reader.readAsDataURL(file);
-    }
-
-    async function runOcrExtraction() {
-      const btn = document.getElementById('btn-run-ocr');
-      const imgEl = document.getElementById('image-preview-element');
-      btn.disabled = true;
-      btn.innerText = "Running OCR...";
-
-      if (typeof Tesseract !== 'undefined') {
-        try {
-          const result = await Tesseract.recognize(imgEl.src, 'eng');
-          const extractedText = result.data.text.trim();
-          if (extractedText.length > 10) {
-            document.getElementById('source-input').value = `[IMAGE OCR EXTRACTION: ${document.getElementById('image-meta-name').innerText}]\n\n` + extractedText;
-            onSourceInputChange();
-            btn.disabled = false;
-            btn.innerText = "Extract Text via OCR";
-            return;
-          }
-        } catch (e) { }
-      }
-
-      document.getElementById('source-input').value = `[IMAGE MULTIMODAL INGESTION]
-FILE: ${document.getElementById('image-meta-name').innerText}
-EXTRACTED VISUAL CONTEXT: Document diagram or screenshot scanned. Ready for transformation.`;
-      onSourceInputChange();
-      btn.disabled = false;
-      btn.innerText = "Extract Text via OCR";
     }
 
     function handleVideoUpload(e) {
@@ -2011,10 +1983,16 @@ ${sourceText}`;
 
       try {
         // Calls your secure Vercel backend proxy
+        const payload = {
+          prompt: systemPrompt,
+          imageBase64: (state.currentIngestMode === 'image' && state.uploadedImageBase64) ? state.uploadedImageBase64 : null,
+          imageMime: state.uploadedImageMime || 'image/png'
+        };
+
         const response = await fetch('/api/transform', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ prompt: systemPrompt })
+          body: JSON.stringify(payload)
         });
 
         if (response.ok) {
@@ -2889,7 +2867,7 @@ ${coreClaims}
       if (!modal) return;
       document.getElementById('modal-user-identity').innerText = state.currentUser || "Piyush Kumar";
       document.getElementById('modal-current-role-badge').innerText = (state.currentRole || 'operator').toUpperCase();
-      
+
       const radios = document.getElementsByName('modal-target-role');
       for (let r of radios) {
         r.checked = (r.value === state.currentRole);
@@ -2908,7 +2886,7 @@ ${coreClaims}
       const tokenBox = document.getElementById('modal-token-box');
       const tokenInput = document.getElementById('input-modal-token');
       tokenInput.value = '';
-      
+
       if (selected === 'operator') {
         tokenBox.classList.add('hidden');
       } else {

@@ -1955,23 +1955,14 @@ Visual diagram or document uploaded. The image will be processed natively by Gem
           return;
         }
 
-        // Convert blob to base64
-        const base64 = await new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => resolve(reader.result.split(',')[1]);
-          reader.onerror = reject;
-          reader.readAsDataURL(blob);
-        });
+        // Send as raw multipart — avoids base64 33% inflation hitting Vercel body limit
+        const formData = new FormData();
+        formData.append('file', blob, filename);
 
-        // Call Groq Whisper via Vercel serverless function
+        // No Content-Type header — browser sets it with boundary automatically
         const response = await fetch('/api/transcribe', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            audioBase64: base64,
-            mimeType: blob.type || 'video/mp4',
-            filename: filename
-          })
+          body: formData
         });
 
         const data = await response.json();

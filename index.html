@@ -1372,7 +1372,7 @@
   <!-- ======================================================== -->
   <script>
     const state = {
-      isLoggedIn: true,
+      isLoggedIn: false,  //changed
       currentRole: 'operator', // operator | commander | auditor
       currentUser: 'OP-101 (Operator)',
       activeView: 'home',
@@ -1553,6 +1553,16 @@
     function applyRolePermissions() {
       const btnTransform = document.getElementById('btn-transform');
       if (!btnTransform) return;
+
+      // 🔒 Add this check at the top:
+      if (!state.isLoggedIn) {
+        btnTransform.className = "w-full py-4 bg-amber-600 hover:bg-amber-700 text-white font-extrabold text-base rounded-xl shadow-lg transition-all flex items-center justify-center space-x-2 cursor-pointer mt-4 uppercase tracking-wider";
+        btnTransform.innerHTML = `
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+          <span>AUTHENTICATION REQUIRED — CLICK TO LOGIN FIRST</span>
+        `;
+        return;
+      } //changed
 
       if (state.currentRole === 'auditor') {
         btnTransform.disabled = true;
@@ -2156,6 +2166,20 @@ ${coreClaims}
     }
 
     async function runTransformation() {
+      // 🔒 1. Check if user is logged in //changed
+      if (!state.isLoggedIn) {
+        alert("⚠️ Access Denied: You must sign in with your clearance credentials before generating deliverables.");
+        switchMainView('login');
+        return;
+      }
+
+      // 2. Check if user is auditor (read-only)
+      if (state.currentRole === 'auditor') {
+        alert("Action Denied: You are logged in as a Compliance Auditor (Read-Only). Switch role in header to run transformations.");
+        return;
+      }
+      //changed
+
       if (state.currentRole === 'auditor') {
         alert("Action Denied: You are logged in as a Compliance Auditor (Read-Only). Switch role in header to run transformations.");
         return;
